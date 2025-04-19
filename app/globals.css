@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+	--color-light: #fde9d3;
+	--color-dark: #251605;
+	--color-interest: #fe8a00;
+	--color-shadow: #0d0c0b;
+}
+
+html {
+	scroll-behavior: smooth;
+	scroll-padding-top: 5.5em;
+}
