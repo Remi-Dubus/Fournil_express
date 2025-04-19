@@ -1,3 +1,7 @@
 export default function Home() {
-	return <main> </main>;
+	return (
+		<main className="h-fit min-h-[85vh] p-2 sm:grid sm:grid-cols-2 sm:gap-2 lg:gap-4 lg:pt-10 2xl:px-60">
+			{" "}
+		</main>
+	);
 }
