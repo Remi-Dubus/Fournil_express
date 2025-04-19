@@ -85,7 +85,7 @@ async function seedContact() {
             id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
             email VARCHAR(150) NOT NULL,
             message TEXT NOT NULL
-        );
+        )
     `;
 }
 
