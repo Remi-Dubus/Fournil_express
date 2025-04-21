@@ -2,9 +2,9 @@
 
 import postgres from "postgres";
 
-import type { registerType } from "@/assets/lib/definitions";
-import { CreateAccountValidation } from "@/entities/user/user.validation";
-import { hashPassword } from "./user.hashPassword";
+import type { registerType } from "@/assets/types/definitions";
+import { CreateAccountValidation } from "@/lib/validation";
+import { hashPassword } from "../../lib/hashPassword";
 import { companyRole } from "./user.logic";
 import { revalidatePath } from "next/cache";
 
