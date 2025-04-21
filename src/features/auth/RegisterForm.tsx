@@ -9,11 +9,11 @@ import { useForm } from "react-hook-form";
 
 import { addAccount } from "./register.action";
 
-import { regex } from "../../assets/lib/regex";
+import { regex } from "../../assets/types/regex";
 import data from "../../assets/data/login.json";
 import errorData from "../../assets/data/error.json";
 
-import type { registerType } from "@/assets/lib/definitions";
+import type { registerType } from "@/assets/types/definitions";
 
 export default function RegisterForm() {
 	// Useform

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import errorData from "../../assets/data/error.json";
+import errorData from "../assets/data/error.json";
 
 const LoginFormSchema = z.object({
 	id: z.string().uuid(),

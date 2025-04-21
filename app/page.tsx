@@ -1,5 +1,5 @@
 import Presentation from "@/components/Presentation";
-import RegisterForm from "@/features/register/RegisterForm";
+import RegisterForm from "@/features/auth/RegisterForm";
 
 export default function Home() {
 	return (
