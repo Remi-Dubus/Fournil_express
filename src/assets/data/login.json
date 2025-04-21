@@ -1,0 +1,15 @@
+{
+	"titleRegister": "Créer un compte",
+	"titleConnection": "Se connecter",
+	"companyName": "Nom de l'entreprise",
+	"email": "Email",
+	"phone": "Téléphone",
+	"role": "Type d'activités",
+	"restaurant": "restaurant",
+	"bakery": "boulangerie",
+	"password": "Mot de passe",
+	"confirmPassword": "Confirmez le mot de passe",
+	"createAccount": "Créer votre compte",
+	"notRegister": "Pas encore inscrit ? ",
+	"alreadyRegister": "Déjà inscrit ? "
+}

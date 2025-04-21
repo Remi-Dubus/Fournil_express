@@ -1,0 +1,13 @@
+{
+	"required": "Champ requis.",
+	"company": "Caractères non valides",
+	"email": "Email non valide.",
+	"phone": "Numéro de téléphone non valide.",
+	"password": "Le mot de passe doit contenir une majuscule, une minuscule, un chiffre et un caractère spécial.",
+	"confirmPassword": "Les mots de passe ne correspondent pas.",
+	"typeOfCompany": "Veuillez selectionner un type d'activité.",
+	"minChar": "Trop court.",
+	"maxChar": "Trop de caractères.",
+	"minQuantity": "Quantité minimale requise.",
+	"maxQuantity": "Quantité trop élevé."
+}
