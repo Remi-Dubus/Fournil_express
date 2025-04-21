@@ -9,11 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "argon2": "^0.41.1",
     "next": "15.3.1",
     "postgres": "^3.4.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-toastify": "^11.0.5"
+    "react-hook-form": "^7.55.0",
+    "react-toastify": "^11.0.5",
+    "zod": "^3.24.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

@@ -1,7 +1,7 @@
 import data from "../assets/data/layout.json";
 
 import Image from "next/image";
-import { mainTitleFont } from "../ui/font";
+import { mainTitleFont } from "@/ui/font";
 
 export default function Header() {
 	return (
