@@ -7,7 +7,7 @@ export default withAuth(
 		const url = req.nextUrl.clone();
 		const pathname = url.pathname;
 
-		// Si pas connecté : on le laisse aller sur login
+		// If token do not exist redirect to login page
 		if (!token) {
 			if (pathname !== "/login") {
 				url.pathname = "/login";
@@ -18,7 +18,7 @@ export default withAuth(
 
 		const role = token.id_role;
 
-		// Protection des routes en fonction du rôle
+		// Verify if role match with role_id
 		if (pathname.startsWith("/bakery") && role !== 1) {
 			url.pathname = "/";
 			return NextResponse.redirect(url);
@@ -41,7 +41,7 @@ export default withAuth(
 	},
 );
 
-// Application du middleware sur ces chemins
+// Path middleware block
 export const config = {
 	matcher: ["/admin/:path*", "/bakery/:path*", "/restaurant/:path*"],
 };
