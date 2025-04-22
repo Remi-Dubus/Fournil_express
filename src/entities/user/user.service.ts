@@ -2,7 +2,7 @@
 
 import postgres from "postgres";
 
-import type { registerType } from "@/assets/types/definitions";
+import type { registerType } from "@/types/definitions";
 import { CreateAccountValidation } from "@/lib/validation";
 import { hashPassword } from "../../lib/hashPassword";
 import { companyRole } from "./user.logic";

@@ -26,3 +26,8 @@ const LoginFormSchema = z.object({
 });
 
 export const CreateAccountValidation = LoginFormSchema.omit({ id: true });
+
+export const ReadAccountValidation = LoginFormSchema.pick({
+	email: true,
+	password: true,
+});
