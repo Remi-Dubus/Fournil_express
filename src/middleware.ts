@@ -19,11 +19,12 @@ export default withAuth(
 		const role = token.id_role;
 
 		// Verify if role match with role_id
-		if (pathname.startsWith("/bakery") && role !== 1) {
+
+		if (pathname.startsWith("/restaurant") && role !== 1) {
 			url.pathname = "/";
 			return NextResponse.redirect(url);
 		}
-		if (pathname.startsWith("/restaurant") && role !== 2) {
+		if (pathname.startsWith("/bakery") && role !== 2) {
 			url.pathname = "/";
 			return NextResponse.redirect(url);
 		}
