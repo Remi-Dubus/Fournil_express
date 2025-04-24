@@ -3,8 +3,8 @@
 import postgres from "postgres";
 
 import type { registerType } from "@/types/definitions";
-import { CreateAccountValidation } from "@/lib/validation";
-import { hashPassword } from "../../lib/hashPassword";
+import { CreateAccountValidation } from "@/lib/utils/validation";
+import { hashPassword } from "../../lib/utils/hashPassword";
 import { companyRole } from "./user.logic";
 import { revalidatePath } from "next/cache";
 

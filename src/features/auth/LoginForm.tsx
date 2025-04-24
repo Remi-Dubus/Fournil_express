@@ -6,14 +6,13 @@ import Link from "next/link";
 
 import data from "../../assets/data/login.json";
 
-import { signIn } from "next-auth/react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { getSession, signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { getRoleSlug, slugify } from "@/lib/utils/slug";
 
 export default function LoginForm() {
 	const router = useRouter();
-	const searchParams = useSearchParams();
-	const callbackUrl = searchParams.get("callbackUrl") || "/";
 	const [error, setError] = useState<string | null>(null);
 	const [loading, setLoading] = useState(false);
 
@@ -34,13 +33,22 @@ export default function LoginForm() {
 		});
 
 		if (res?.ok) {
-			router.push(callbackUrl);
+			const session = await getSession();
+			const role = session && getRoleSlug(session?.user.id_role);
+			const slug = session && slugify(session?.user.label);
+
+			if (role !== "user") {
+				router.push(`/${role}/${slug}/product`);
+			} else {
+				router.push("/");
+			}
 		} else {
 			setError("Email ou mot de passe invalide.");
 		}
 
 		setLoading(false);
 	};
+
 	return (
 		<article
 			id="connect"
@@ -85,7 +93,6 @@ export default function LoginForm() {
 						/>
 						{error && <p className="text-red-800">{error}</p>}
 					</fieldset>
-					<input type="hidden" name="redirectTo" value={callbackUrl} />
 					<button
 						type="submit"
 						className="w-48 h-12 shadow-dark shadow-sm text-light bg-dark hover:bg-primary-700 focus:ring-4 rounded-lg px-5 py-1 text-center hover:scale-105 active:text-dark active:bg-interest"
