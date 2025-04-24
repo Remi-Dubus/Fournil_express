@@ -2,33 +2,32 @@ import { withAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
 
 export default withAuth(
-	function middleware(req) {
+	(req) => {
 		const token = req.nextauth.token;
 		const url = req.nextUrl.clone();
 		const pathname = url.pathname;
-
-		// If token do not exist redirect to login page
+		console.log("middleware actif - pathname:", pathname);
+		// Redirection if token not found
 		if (!token) {
-			if (pathname !== "/login") {
-				url.pathname = "/login";
+			if (pathname !== "/") {
+				url.pathname = "/";
 				return NextResponse.redirect(url);
 			}
 			return NextResponse.next();
 		}
 
-		const role = token.id_role;
+		const id_role = token.id_role;
 
-		// Verify if role match with role_id
-
-		if (pathname.startsWith("/restaurant") && role !== 1) {
+		// Redirection if role on url do not match with the id_role
+		if (pathname.startsWith("/restaurant") && id_role !== 1) {
 			url.pathname = "/";
 			return NextResponse.redirect(url);
 		}
-		if (pathname.startsWith("/bakery") && role !== 2) {
+		if (pathname.startsWith("/bakery") && id_role !== 2) {
 			url.pathname = "/";
 			return NextResponse.redirect(url);
 		}
-		if (pathname.startsWith("/admin") && role !== 3) {
+		if (pathname.startsWith("/admin") && id_role !== 3) {
 			url.pathname = "/";
 			return NextResponse.redirect(url);
 		}
@@ -42,7 +41,7 @@ export default withAuth(
 	},
 );
 
-// Path middleware block
+// Blocked path
 export const config = {
 	matcher: ["/admin/:path*", "/bakery/:path*", "/restaurant/:path*"],
 };
