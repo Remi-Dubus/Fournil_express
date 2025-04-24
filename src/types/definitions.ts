@@ -8,3 +8,10 @@ export type registerType = {
 	password: string;
 	confirm: string;
 };
+
+export type productType = {
+	id?: number;
+	label: string;
+	price: number;
+	id_bakery: string;
+};

@@ -1,6 +1,6 @@
 "use client";
 
-import { titleFont } from "@/ui/font";
+import { titleFont } from "@/assets/fonts/font";
 
 import Link from "next/link";
 
