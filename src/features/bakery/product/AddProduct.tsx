@@ -8,9 +8,9 @@ import { useSession } from "next-auth/react";
 
 import { addProduct } from "./addProduct.action";
 
-import data from "../../assets/data/bakery/product.json";
-import errorData from "../../assets/data/error.json";
-import { regex } from "../../lib/utils/regex";
+import data from "../../../assets/data/bakery/product.json";
+import errorData from "../../../assets/data/error.json";
+import { regex } from "../../../lib/utils/regex";
 
 import type { productType } from "@/types/definitions";
 
