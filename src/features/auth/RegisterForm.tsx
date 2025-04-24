@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 
 import { addAccount } from "./register.action";
 
-import { regex } from "../../assets/regex";
+import { regex } from "../../lib/utils/regex";
 import data from "../../assets/data/login.json";
 import errorData from "../../assets/data/error.json";
 
