@@ -1,9 +1,9 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { authConfig } from "./auth.config";
-import { ReadAccountValidation } from "../validation";
+import { ReadAccountValidation } from "../utils/validation";
 import { getUserByEmail } from "@/services/user/getUserByEmail";
-import { verifyPassword } from "../hashPassword";
+import { verifyPassword } from "../utils/hashPassword";
 
 export const authOptions = {
 	...authConfig,
