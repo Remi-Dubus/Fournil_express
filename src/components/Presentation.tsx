@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { titleFont } from "../ui/font";
+import { titleFont } from "../assets/fonts/font";
 import data from "../assets/data/presentation.json";
 
 export default function Presentation() {
