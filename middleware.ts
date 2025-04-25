@@ -6,7 +6,7 @@ export default withAuth(
 		const token = req.nextauth.token;
 		const url = req.nextUrl.clone();
 		const pathname = url.pathname;
-		console.log("middleware actif - pathname:", pathname);
+
 		// Redirection if token not found
 		if (!token) {
 			if (pathname !== "/") {
