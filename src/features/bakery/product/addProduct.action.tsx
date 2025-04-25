@@ -1,4 +1,4 @@
-import { createProduct } from "@/entities/bakery/bakery.service";
+import { createProduct } from "@/entities/bakery/product/create";
 
 import type { productType } from "@/types/definitions";
 
