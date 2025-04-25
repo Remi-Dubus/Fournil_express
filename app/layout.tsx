@@ -10,7 +10,7 @@ import SessionWrapper from "@/components/SessionWrapper";
 export const metadata: Metadata = {
 	title: "Fournil Express",
 	description:
-		"Site de mise en relation entre restaurateurs et boulangers afin de facilité les commandes de pain.",
+		"Site de mise en relation entre restaurateurs et boulangers afin de faciliter les commandes de pains.",
 };
 
 export default function RootLayout({
