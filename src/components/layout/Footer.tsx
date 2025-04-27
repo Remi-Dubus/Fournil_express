@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import data from "../assets/data/layout.json";
+import data from "../../assets/data/layout.json";
 
 export default function Footer() {
 	return (

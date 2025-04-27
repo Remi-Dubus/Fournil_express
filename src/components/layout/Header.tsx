@@ -1,4 +1,4 @@
-import data from "../assets/data/layout.json";
+import data from "../../assets/data/layout.json";
 
 import Image from "next/image";
 import { mainTitleFont } from "@/assets/fonts/font";

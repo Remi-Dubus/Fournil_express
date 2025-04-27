@@ -2,8 +2,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Bounce, ToastContainer } from "react-toastify";
 
-import Header from "../src/components/Header";
-import Footer from "../src/components/Footer";
+import Header from "../src/components/layout/Header";
+import Footer from "../src/components/layout/Footer";
 import { paragraphFont } from "../src/assets/fonts/font";
 import SessionWrapper from "@/components/SessionWrapper";
 
