@@ -74,8 +74,10 @@ export default function Page() {
 				setConfirmDeleteModale={setConfirmDeleteModale}
 			/>
 			<AddProduct
-				setOpenModale={setAddProductModale}
 				openModale={addProductModale}
+				setOpenModale={setAddProductModale}
+				allProducts={allProducts}
+				setAllProducts={setAllProducts}
 			/>
 			{allProducts?.length === 0 && <p>{data.noProduct}</p>}
 			<ConfirmDeleteModale
