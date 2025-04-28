@@ -15,9 +15,16 @@ import { regex } from "../../../lib/utils/regex";
 import type { productType } from "@/types/definitions";
 
 export default function AddProduct({
-	setOpenModale,
 	openModale,
-}: { setOpenModale: (bool: boolean) => void; openModale: boolean }) {
+	setOpenModale,
+	allProducts,
+	setAllProducts,
+}: {
+	openModale: boolean;
+	setOpenModale: (bool: boolean) => void;
+	allProducts: productType[];
+	setAllProducts: (product: productType[]) => void;
+}) {
 	// UseForm
 	const {
 		register,
@@ -47,6 +54,13 @@ export default function AddProduct({
 				toast.error(response.message);
 			} else {
 				toast.success(response.message);
+				if (response?.product) {
+					newProduct = { ...newProduct, id: response?.product.id };
+				}
+				// Add to current state
+				let newAllProducts = [...allProducts];
+				newAllProducts = [...newAllProducts, newProduct];
+				setAllProducts(newAllProducts);
 				reset();
 			}
 		} catch (error) {
