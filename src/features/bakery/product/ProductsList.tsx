@@ -6,7 +6,13 @@ import type { productType } from "@/types/definitions";
 
 export default function ProductsList({
 	allProducts,
-}: { allProducts: productType[] }) {
+	setCurrentProduct,
+	setConfirmDeleteModale,
+}: {
+	allProducts: productType[];
+	setCurrentProduct: (n: number) => void;
+	setConfirmDeleteModale: (bool: boolean) => void;
+}) {
 	return (
 		<ul className="w-11/12 xl:flex xl:flex-col xl:items-center">
 			{allProducts?.map((e) => (
@@ -19,6 +25,10 @@ export default function ProductsList({
 					<button
 						type="button"
 						className="bg-red-800 py-1 col-span-2 rounded-full text-sm text-light active:bg-orange-300 active:text-dark shadow-dark shadow-sm"
+						onClick={() => {
+							e.id && setCurrentProduct(e.id);
+							setConfirmDeleteModale(true);
+						}}
 					>
 						{data.deleteButton}
 					</button>

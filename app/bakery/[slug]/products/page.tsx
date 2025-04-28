@@ -11,12 +11,15 @@ import AddProduct from "@/features/bakery/product/AddProduct";
 import data from "../../../../src/assets/data/bakery/product.json";
 import ProductsList from "@/features/bakery/product/ProductsList";
 
-import type { productType } from "@/types/definitions";
+import type { deleteType, productType } from "@/types/definitions";
 import { browseProducts } from "@/features/bakery/product/browseProducts.action";
+import ConfirmDeleteModale from "@/components/ui/ConfirmDeleteModale";
+import { destroyProduct } from "@/features/bakery/product/deleteProduct.action";
 
 export default function Page() {
 	// State of modale
 	const [addProductModale, setAddProductModale] = useState(false);
+	const [confirmDeleteModale, setConfirmDeleteModale] = useState(false);
 
 	// Find the actual bakery
 	const { data: session } = useSession();
@@ -37,17 +40,50 @@ export default function Page() {
 			});
 	}, [id_bakery]);
 
+	// Delete a product
+	const [currentProduct, setCurrentProduct] = useState<number>();
+
+	const handleDeleteProduct = async (id: string) => {
+		try {
+			const ids = { id, id_company: id_bakery };
+
+			const response = await destroyProduct(ids);
+
+			if (response?.success) {
+				toast.success(response.message);
+				setAllProducts((prevState) =>
+					prevState.filter((e) => `${e.id}` !== id),
+				);
+				setConfirmDeleteModale(false);
+			} else {
+				toast.error(response?.message);
+			}
+		} catch (error) {
+			toast.error("Une erreur est survenue. Veuillez réessayer.");
+		}
+	};
+
 	return (
 		<main className="min-h-[85vh] h-fit flex flex-col items-center py-4 px-2">
 			<h2 className={`text-3xl mb-4 ${titleFont.className} text-dark`}>
 				{data.productList}
 			</h2>
-			<ProductsList allProducts={allProducts} />
+			<ProductsList
+				allProducts={allProducts}
+				setCurrentProduct={setCurrentProduct}
+				setConfirmDeleteModale={setConfirmDeleteModale}
+			/>
 			<AddProduct
 				setOpenModale={setAddProductModale}
 				openModale={addProductModale}
 			/>
 			{allProducts?.length === 0 && <p>{data.noProduct}</p>}
+			<ConfirmDeleteModale
+				openModale={confirmDeleteModale}
+				setOpenModale={setConfirmDeleteModale}
+				current={currentProduct}
+				handleDelete={handleDeleteProduct}
+			/>
 			<button
 				type="button"
 				className="fixed bg-green-500 bottom-18 py-1 rounded-full px-2 text-dark active:text-light active:bg-green-800 inset z-5 shadow-dark shadow-sm"
