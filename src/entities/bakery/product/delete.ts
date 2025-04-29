@@ -11,7 +11,7 @@ export async function deleteProduct(ids: deleteType) {
 		const { id, id_company } = ids;
 		if (id && id_company) {
 			const result = await sql`
-		    	DELETE FROM product WHERE id = ${id} AND id_company = ${id_company}
+		    	DELETE FROM product WHERE id = ${id} AND id_bakery = ${id_company}
 		    	`;
 
 			return {

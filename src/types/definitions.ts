@@ -9,10 +9,25 @@ export type registerType = {
 	confirm: string;
 };
 
+export type companyType = {
+	id: string;
+	label: string;
+	email: string;
+};
+
 export type productType = {
 	id?: number;
 	label: string;
 	price: number;
+	id_bakery: string;
+};
+
+export type orderType = {
+	id?: number;
+	label: string;
+	price: number;
+	quantity?: number;
+	id_restaurant?: string;
 	id_bakery: string;
 };
 

@@ -21,7 +21,7 @@ export default function Page() {
 	const [addProductModale, setAddProductModale] = useState(false);
 	const [confirmDeleteModale, setConfirmDeleteModale] = useState(false);
 
-	// Find the actual bakery
+	// Find the current bakery
 	const { data: session } = useSession();
 	const id_bakery = session?.user.id;
 

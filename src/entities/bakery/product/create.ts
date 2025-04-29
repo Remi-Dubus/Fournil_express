@@ -33,7 +33,7 @@ export async function createProduct(productForm: productType) {
 
 	try {
 		const result = await sql`
-            INSERT INTO product (label, price, id_company)
+            INSERT INTO product (label, price, id_bakery)
             VALUES(${label}, ${price}, ${id_bakery})
             RETURNING id;
             `;

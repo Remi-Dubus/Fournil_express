@@ -47,3 +47,24 @@ const ProductFormSchema = z.object({
 export const CreateProductValidation = ProductFormSchema.omit({
 	id: true,
 });
+
+// Order Schema
+const OrderFormSchema = z.object({
+	id: z.string().uuid(),
+	label: z
+		.string()
+		.min(3, { message: errorData.minChar })
+		.max(30, { message: errorData.maxChar }),
+	price: z.number(),
+	quantity: z
+		.number()
+		.min(1, { message: errorData.minQuantity })
+		.max(500, { message: errorData.maxQuantity }),
+	id_bakery: z.string().uuid(),
+	id_restaurant: z
+		.string()
+		.min(10, { message: errorData.minChar })
+		.max(150, { message: errorData.maxChar }),
+});
+
+export const CreateOrderValidation = OrderFormSchema.omit({ id: true });

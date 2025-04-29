@@ -54,7 +54,7 @@ export default function LoginForm() {
 	return (
 		<article
 			id="connect"
-			className="mb-96 w-full bg-light rounded-lg sm:col-start-2 shadow-dark shadow-sm sm:mb-0 xl:w-10/12"
+			className="mb-96 w-full bg-light rounded-lg sm:col-start-2 shadow-dark shadow-sm sm:mb-0 xl:mt-10 xl:w-10/12"
 		>
 			<section className="p-4 space-y-4 sm:space-y-12 lg:space-y-0 sm:p-8">
 				<h2
