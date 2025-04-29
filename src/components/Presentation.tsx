@@ -6,7 +6,7 @@ import data from "../assets/data/presentation.json";
 
 export default function Presentation() {
 	return (
-		<article className="mt-13 mb-60 w-full bg-light rounded-lg flex flex-col items-center justify-center p-4 py-8 gap-4 shadow-dark shadow-sm sm:col-start-1 sm:justify-start sm:my-0 lg:px-8 lg:pb-12 lg:row-span-2 xl:w-9/12 xl:ml-auto xl:mb-16">
+		<article className="mt-13 mb-60 w-full bg-light rounded-lg flex flex-col items-center justify-center p-4 py-8 gap-4 shadow-dark shadow-sm sm:col-start-1 sm:justify-start sm:my-0 lg:px-8 lg:pb-12 lg:row-span-2 xl:w-9/12 xl:ml-auto xl:mb-16 xl:mt-10">
 			<h2
 				className={`${titleFont.className} text-2xl text-center text-interest lg:text-4xl lg:mb-16`}
 			>

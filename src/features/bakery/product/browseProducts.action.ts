@@ -1,4 +1,4 @@
-import { readAllProducts } from "@/entities/bakery/product/read";
+import { readAllProducts } from "@/services/product/getProductsByBakery";
 import { convertFromCents } from "@/lib/utils/convertPrice";
 
 export async function browseProducts(id_bakery: string) {
