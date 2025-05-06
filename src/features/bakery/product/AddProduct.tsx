@@ -8,7 +8,7 @@ import { useSession } from "next-auth/react";
 
 import { addProduct } from "./addProduct.action";
 
-import data from "../../../assets/data/bakery/product.json";
+import data from "../../../assets/data/product.json";
 import errorData from "../../../assets/data/error.json";
 import { regex } from "../../../lib/utils/regex";
 
@@ -63,7 +63,7 @@ export default function AddProduct({
 				setAllProducts(newAllProducts);
 				reset();
 			}
-		} catch (error) {
+		} catch (err) {
 			toast.error("Une erreur est survenue. Veuillez réessayer.");
 		}
 	};

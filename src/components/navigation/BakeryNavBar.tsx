@@ -9,7 +9,7 @@ import { getSession } from "next-auth/react";
 import BurgerButton from "./BurgerButton";
 import { getRoleSlug, slugify } from "@/lib/utils/slug";
 
-import data from "../../assets/data/bakery/bakeryNavBar.json";
+import data from "../../assets/data/navbar/bakeryNavBar.json";
 
 export default function burgerMenuCompany() {
 	// State of menu

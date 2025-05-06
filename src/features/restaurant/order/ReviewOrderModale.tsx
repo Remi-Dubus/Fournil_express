@@ -1,8 +1,8 @@
 import { titleFont } from "@/assets/fonts/font";
 
-import data from "../../../assets/data/bakery/product.json";
+import data from "../../../assets/data/product.json";
 
-import type { orderType } from "@/types/definitions";
+import type { orderRestaurantType } from "@/types/definitions";
 
 export default function ReviewOrderModale({
 	openModale,
@@ -11,8 +11,9 @@ export default function ReviewOrderModale({
 }: {
 	setOpenModale: (bool: boolean) => void;
 	openModale: boolean;
-	reviewOrder: orderType[] | null;
+	reviewOrder: orderRestaurantType[] | null;
 }) {
+	// Total price of order
 	let totalPriceOfOrder = 0;
 
 	if (reviewOrder) {

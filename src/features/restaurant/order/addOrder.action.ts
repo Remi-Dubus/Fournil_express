@@ -1,7 +1,7 @@
 import { createOrder } from "@/entities/restaurant/order/create";
 
-import type { orderType } from "@/types/definitions";
+import type { orderRestaurantType } from "@/types/definitions";
 
-export async function addOrder(order: orderType[]) {
+export async function addOrder(order: orderRestaurantType[]) {
 	return await createOrder(order);
 }

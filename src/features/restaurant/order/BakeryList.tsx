@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { browseBakery } from "./browseBakery.action";
 
 import errorData from "../../../assets/data/error.json";
-import data from "../../../assets/data/restaurant/order.json";
+import data from "../../../assets/data/order.json";
 
 import type { companyType } from "@/types/definitions";
 
@@ -79,7 +79,7 @@ export default function BakeryList({
 					type="submit"
 					className="col-start-2 bg-green-500 mt-2 py-1 rounded-full px-2 text-dark active:text-light active:bg-green-800 inset shadow-dark shadow-sm xl:mt-8"
 				>
-					{data.confirm}
+					{data.confirmButton}
 				</button>
 			</form>
 		</article>

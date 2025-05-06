@@ -22,13 +22,49 @@ export type productType = {
 	id_bakery: string;
 };
 
-export type orderType = {
+export type orderRestaurantType = {
 	id?: number;
 	label: string;
 	price: number;
 	quantity?: number;
 	id_restaurant?: string;
 	id_bakery: string;
+};
+
+export type orderProductType = {
+	label: string;
+	price: number;
+	quantity: number;
+	id: string;
+};
+
+export type orderBakeryType = {
+	booking_id: string;
+	order_number: number;
+	date: string;
+	validate: boolean;
+	hidden_bakery?: boolean;
+	products: orderProductType[];
+};
+
+export type formatedOrdersType = {
+	label: string;
+	email: string;
+	orders: orderBakeryType[];
+};
+
+export type ordersListType = {
+	booking_id: string;
+	order_number: number;
+	restaurant_name: string;
+	restaurant_email: string;
+	date: string;
+	product_name: string;
+	price: number;
+	quantity: number;
+	validate: boolean;
+	hidden_bakery: boolean;
+	product_id: string;
 };
 
 export type deleteType = {
