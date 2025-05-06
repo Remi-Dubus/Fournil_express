@@ -2,15 +2,14 @@
 
 import { titleFont } from "@/assets/fonts/font";
 
-import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
 import { useState } from "react";
 
 import BakeryList from "../../../../src/features/restaurant/order/BakeryList";
 
-import data from "../../../../src/assets/data/restaurant/order.json";
+import data from "../../../../src/assets/data/order.json";
 
-import type { productType, companyType } from "@/types/definitions";
+import type { productType } from "@/types/definitions";
 import ProductsList from "@/features/restaurant/order/ProductsList";
 import { browseProducts } from "@/features/bakery/product/browseProducts.action";
 

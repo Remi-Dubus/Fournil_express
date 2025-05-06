@@ -7,14 +7,14 @@ import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
 
 import AddProduct from "@/features/bakery/product/AddProduct";
-
-import data from "../../../../src/assets/data/bakery/product.json";
-import ProductsList from "@/features/bakery/product/ProductsList";
-
-import type { deleteType, productType } from "@/types/definitions";
 import { browseProducts } from "@/features/bakery/product/browseProducts.action";
 import ConfirmDeleteModale from "@/components/ui/ConfirmDeleteModale";
 import { destroyProduct } from "@/features/bakery/product/deleteProduct.action";
+import ProductsList from "@/features/bakery/product/ProductsList";
+
+import data from "../../../../src/assets/data/product.json";
+
+import type { productType } from "@/types/definitions";
 
 export default function Page() {
 	// State of modale

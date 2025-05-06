@@ -7,7 +7,7 @@ import { regex } from "../../../lib/utils/regex";
 import ReviewOrderModale from "./ReviewOrderModale";
 import { addOrder } from "./addOrder.action";
 
-import data from "../../../assets/data/bakery/product.json";
+import data from "../../../assets/data/product.json";
 import errorData from "../../../assets/data/error.json";
 
 import type { orderType, productType } from "@/types/definitions";
@@ -34,6 +34,7 @@ export default function ListOfProduct({
 	const [reviewOrder, setReviewOrder] = useState<orderType[] | null>(null);
 
 	const handleReviewOrder = (array: Record<string, { quantity: number }[]>) => {
+		console.log(array);
 		// Flat the array
 		const quantities = array.products.map((e) => e.quantity);
 
@@ -61,7 +62,7 @@ export default function ListOfProduct({
 					toast.success(response.message);
 				}
 				setReviewOrderModale(false);
-				/* reset(); */
+				reset();
 			}
 		} catch (error) {
 			toast.error("Une erreur est survenue. Veuillez réessayer.");
@@ -96,7 +97,7 @@ export default function ListOfProduct({
 						<input
 							type="number"
 							className="bg-white text-dark text-right h-fit col-start-7 rounded"
-							{...register(`products${i}.quantity`, {
+							{...register(`products[${i}].quantity`, {
 								required: errorData.required,
 								min: {
 									value: 0,

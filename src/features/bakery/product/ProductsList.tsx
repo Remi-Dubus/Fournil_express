@@ -1,6 +1,6 @@
 "use client";
 
-import data from "../../../assets/data/bakery/product.json";
+import data from "../../../assets/data/product.json";
 
 import type { productType } from "@/types/definitions";
 
@@ -21,7 +21,7 @@ export default function ProductsList({
 					className="mb-1 bg-light py-4 px-2 rounded-lg w-full grid grid-cols-7 shadow-dark shadow-sm items-center xl:w-1/2"
 				>
 					<p className="col-span-3">{e.label}</p>
-					<p className="w-96 col-span-2">{Number(e.price).toFixed(2)} €</p>
+					<p className="col-span-2">{Number(e.price).toFixed(2)} €</p>
 					<button
 						type="button"
 						className="bg-red-800 py-1 col-span-2 rounded-full text-sm text-light active:bg-orange-300 active:text-dark shadow-dark shadow-sm"
