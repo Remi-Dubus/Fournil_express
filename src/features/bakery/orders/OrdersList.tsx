@@ -55,20 +55,24 @@ export default function OrdersList({
 								setSelectedRestaurant([e.label, e.email]);
 								setOpenSelectedOrderModale(true);
 							}}
-							className="col-span-3 grid grid-cols-3 items-center gap-1 px-2 rounded-lg mb-1 p-2 text-dark active:bg-interest"
+							className="list-none col-span-3 grid grid-cols-3 items-center gap-1 px-2 rounded-lg mb-1 p-2 text-dark active:bg-interest"
 						>
-							<p className="bg-white h-full text-start text-sm  px-2 rounded-lg">
-								{data.orderNumber}
-								{o.order_number}
-							</p>
-							<p className="bg-white h-full text-sm px-2 rounded-lg">
-								{formatDate(o.date)}
-							</p>
-							<p
-								className={`bg-white h-full text-sm pt-2 px-2 rounded-lg ${o.validate === false ? "text-interest" : "text-green-500"}`}
-							>
-								{o?.validate === false ? data.pending : data.validate}
-							</p>
+							<li className="bg-white h-full flex flex-col items-center justify-center text-sm  px-2 rounded-lg">
+								<p>
+									{data.orderNumber}
+									{o.order_number}
+								</p>
+							</li>
+							<li className="bg-white h-full flex flex-col items-center justify-center text-sm  px-2 rounded-lg">
+								<p>{formatDate(o.date)}</p>
+							</li>
+							<li className="flex flex-col h-full bg-white items-center justify-center text-sm  px-2 rounded-lg">
+								<p
+									className={`${o.validate === false ? "text-interest" : "text-green-500"}`}
+								>
+									{o?.validate === false ? data.pending : data.validate}
+								</p>
+							</li>
 						</button>
 					))}
 				</section>

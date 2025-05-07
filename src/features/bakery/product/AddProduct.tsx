@@ -133,7 +133,7 @@ export default function AddProduct({
 				</button>
 				<button
 					type="button"
-					className="bg-red-800 col-start-2 py-1 rounded-full text-light active:bg-orange-300 active:text-dark shadow-dark shadow-sm"
+					className="bg-dark col-start-2 py-1 rounded-full text-light active:bg-orange-300 active:text-dark shadow-dark shadow-sm"
 					onClick={() => setOpenModale(false)}
 				>
 					{data.returnButton}

@@ -63,7 +63,7 @@ export default function ReviewOrderModale({
 				</button>
 				<button
 					type="button"
-					className="bg-red-800 py-1 w-1/2 rounded-full text-light active:bg-orange-300 active:text-dark shadow-dark shadow-sm"
+					className="bg-dark py-1 w-1/2 rounded-full text-light active:bg-orange-300 active:text-dark shadow-dark shadow-sm"
 					onClick={() => setOpenModale(false)}
 				>
 					{data.returnButton}
