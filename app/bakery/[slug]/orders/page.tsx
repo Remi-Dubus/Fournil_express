@@ -34,7 +34,7 @@ export default function Page() {
 	}, [id_bakery]);
 
 	return (
-		<main className="min-h-[85vh] h-full flex flex-col items-center py-4 px-2">
+		<main className="min-h-[85vh] h-full flex flex-col items-center py-4 px-2 xl:ml-80">
 			<h2 className={`text-3xl mb-4 ${titleFont.className} text-dark`}>
 				{data.ordersList}
 			</h2>

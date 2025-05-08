@@ -64,7 +64,7 @@ export default function Page() {
 	};
 
 	return (
-		<main className="min-h-[85vh] h-fit flex flex-col items-center py-4 px-2">
+		<main className="min-h-[85vh] h-fit flex flex-col items-center py-4 px-2 xl:ml-80">
 			<h2 className={`text-3xl mb-4 ${titleFont.className} text-dark`}>
 				{data.productList}
 			</h2>
@@ -88,7 +88,7 @@ export default function Page() {
 			/>
 			<button
 				type="button"
-				className="fixed bg-green-500 bottom-18 py-1 rounded-full px-2 text-dark active:text-light active:bg-green-800 inset z-5 shadow-dark shadow-sm"
+				className="bg-green-500 py-1 rounded-full px-2 text-dark active:text-light active:bg-green-800 inset shadow-dark shadow-sm mt-8"
 				onClick={() => setAddProductModale(true)}
 			>
 				{data.addProduct}
