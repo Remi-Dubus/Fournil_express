@@ -10,7 +10,7 @@ import { addOrder } from "./addOrder.action";
 import data from "../../../assets/data/product.json";
 import errorData from "../../../assets/data/error.json";
 
-import type { orderType, productType } from "@/types/definitions";
+import type { orderRestaurantType, productType } from "@/types/definitions";
 
 export default function ListOfProduct({
 	allProducts,
@@ -31,7 +31,9 @@ export default function ListOfProduct({
 	} = useForm();
 
 	// Review the order
-	const [reviewOrder, setReviewOrder] = useState<orderType[] | null>(null);
+	const [reviewOrder, setReviewOrder] = useState<orderRestaurantType[] | null>(
+		null,
+	);
 
 	const handleReviewOrder = (array: Record<string, { quantity: number }[]>) => {
 		console.log(array);
@@ -73,7 +75,7 @@ export default function ListOfProduct({
 		<form className="w-full" onSubmit={(e) => handleSubmitOrder(e)}>
 			<ul className="w-full flex flex-col items-center">
 				{allProducts.length === 0 ? (
-					<li className="mt-8 bg-light py-4 px-2 rounded-lg w-full text-xl text-center shadow-dark shadow-sm items-center xl:w-1/2">
+					<li className="mt-8 bg-light py-4 px-2 rounded-lg w-full text-center shadow-dark shadow-sm items-center xl:w-1/2">
 						{data.noProduct}
 					</li>
 				) : (
@@ -125,7 +127,7 @@ export default function ListOfProduct({
 				/>
 				<button
 					type="button"
-					className="col-start-2 bg-green-500 mt-2 py-1 rounded-full px-2 text-dark active:text-light active:bg-green-800 inset shadow-dark shadow-sm"
+					className="col-start-2 bg-green-500 mt-8 py-1 rounded-full px-2 text-dark active:text-light active:bg-green-800 inset shadow-dark shadow-sm"
 					onClick={handleSubmit(handleReviewOrder)}
 				>
 					{data.orderButton}
