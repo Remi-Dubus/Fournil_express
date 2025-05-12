@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { redirect } from "next/navigation";
+import { signOut } from "next-auth/react";
 
 import { titleFont } from "@/assets/fonts/font";
 
@@ -78,6 +79,7 @@ export default function burgerMenuCompany() {
 				<button
 					type="button"
 					className="bg-dark py-2 px-3.5 rounded-lg border-light border-2 active:bg-light active:text-dark active:border-dark xl:hover:text-interest xl:bg-light xl:text-dark xl:active:text-gray-600 xl:border-none xl:absolute xl:bottom-18 xl:w-full"
+					onClick={() => signOut()}
 				>
 					{data.disconnect}
 				</button>
