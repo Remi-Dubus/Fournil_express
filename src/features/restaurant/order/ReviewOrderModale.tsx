@@ -32,7 +32,7 @@ export default function ReviewOrderModale({
 			}`}
 		>
 			<ul
-				className={`flex flex-col items-center w-11/12 gap-2 px-1 py-4 bg-light rounded-lg shadow-lg transform duration-1000 ease-in-out xl:w-1/4 ${openModale ? "translate-y-0" : "translate-y-full"}`}
+				className={`flex flex-col items-center w-11/12 gap-2 px-1 py-4 bg-light rounded-lg shadow-lg transform duration-1000 ease-in-out sm:w-2/3 xl:w-1/3 ${openModale ? "translate-y-0" : "translate-y-full"}`}
 			>
 				<h2
 					className={`${titleFont.className} text-xl mb-4 text-center text-interest xl:text-2xl xl:mb-4`}
@@ -41,17 +41,20 @@ export default function ReviewOrderModale({
 				</h2>
 				<ul>
 					{reviewOrder?.map((e, i) => (
-						<li key={e.id} className="grid grid-cols-4">
-							<p className="col-span-3">
+						<li
+							key={e.id}
+							className="text-sm grid grid-cols-10 gap-3 sm:text-lg"
+						>
+							<p className="col-span-7">
 								{e.quantity} {e.label} à {Number(e.price).toFixed(2)} €
 							</p>
-							<p className="col-start-4 text-end">
+							<p className="col-span-3">
 								<strong>Total:</strong>{" "}
 								{(e.quantity && e.quantity * e.price)?.toFixed(2)} €
 							</p>
 						</li>
 					))}
-					<p className="w-full text-end mt-8">
+					<p className="w-full text-end mt-8 sm:text-lg">
 						<strong>Total:</strong> {totalPriceOfOrder.toFixed(2)} €
 					</p>
 				</ul>
