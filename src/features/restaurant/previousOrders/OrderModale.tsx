@@ -1,8 +1,6 @@
 import { titleFont } from "@/assets/fonts/font";
 
-import { toast } from "react-toastify";
 import formatDate from "@/lib/utils/formatDate";
-import { switchValidateOrder } from "./validateOrder.action";
 
 import orderData from "../../../assets/data/order.json";
 import productData from "../../../assets/data/product.json";
@@ -13,15 +11,11 @@ export default function OrderModale({
 	openModale,
 	setOpenModale,
 	selectedOrder,
-	setSelectedOrder,
-	setAllOrders,
 	selectedRestaurant,
 }: {
 	setOpenModale: (bool: boolean) => void;
 	openModale: boolean;
 	selectedOrder: orderBakeryType | null;
-	setSelectedOrder: (order: orderBakeryType | null) => void;
-	setAllOrders: React.Dispatch<React.SetStateAction<formatedOrdersType[]>>;
 	selectedRestaurant: string[] | null;
 }) {
 	// Total price of order
@@ -33,44 +27,6 @@ export default function OrderModale({
 				totalPriceOfOrder = totalPriceOfOrder + el?.quantity * el.price;
 		}
 	}
-
-	// Button for switch between validate and await for validation
-	const handleSwitchValidate = async (id_order: string) => {
-		// Switch between validate and await for validation
-		console.log(selectedOrder?.validate);
-		const currentState = !selectedOrder?.validate;
-		const newState = { id_order, currentState };
-
-		try {
-			const response = await switchValidateOrder(newState);
-
-			if (!response) {
-				toast.error("Une erreur est survenue. Veuillez réesayer.");
-			} else {
-				// Update state of the modale
-				if (selectedOrder?.booking_id) {
-					const updatedOrder: orderBakeryType = {
-						...selectedOrder,
-						validate: currentState,
-					};
-					setSelectedOrder(updatedOrder);
-				}
-				// Update state of order list
-				setAllOrders((prevState) =>
-					prevState.map((client) => ({
-						...client,
-						orders: client.orders.map((order) =>
-							order.booking_id === id_order
-								? { ...order, validate: currentState }
-								: order,
-						),
-					})),
-				);
-			}
-		} catch (err) {
-			toast.error("Une erreur est survenue. Veuillez réessayer.");
-		}
-	};
 
 	return (
 		<article
@@ -112,19 +68,13 @@ export default function OrderModale({
 				>
 					{orderData.orderState}
 				</h2>
-				<button
-					type="button"
-					className={`h-8 border-2 ${titleFont.className} text-light mb-3 rounded-lg inset shadow-dark shadow-sm xl:text-xl ${selectedOrder?.validate === false ? "bg-interest outline-interest active:text-light active:bg-orange-600" : "bg-green-500 outline-green-500 active:text-light active:bg-green-800"}`}
-					onClick={() => {
-						if (selectedOrder?.booking_id) {
-							handleSwitchValidate(selectedOrder?.booking_id);
-						}
-					}}
+				<p
+					className={`h-8 xl:text-xl ${selectedOrder?.validate === false ? "text-interest" : "text-green-500"}`}
 				>
 					{selectedOrder?.validate === false
 						? orderData.pending
 						: orderData.validate}
-				</button>
+				</p>
 				<button
 					type="button"
 					className={`h-8 border-2 ${titleFont.className} text-light mb-3 rounded-lg inset shadow-dark shadow-sm xl:text-xl bg-red-700 outline-red-700`}

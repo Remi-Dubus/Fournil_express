@@ -1,7 +1,7 @@
 import { titleFont } from "@/assets/fonts/font";
 
 import { useEffect, useState } from "react";
-import { useForm, type SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
 import { browseBakery } from "./browseBakery.action";
@@ -15,11 +15,7 @@ export default function BakeryList({
 	handleSelectBakery,
 }: { handleSelectBakery: (id: string) => Promise<void> }) {
 	// Useform
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm();
+	const { register, handleSubmit } = useForm();
 
 	// Browse all bakery
 	const [allBakery, setAllBakery] = useState<companyType[]>([]);
@@ -28,7 +24,6 @@ export default function BakeryList({
 		async function fetchBakery() {
 			try {
 				const response = await browseBakery();
-				console.log(response);
 				if (response.result) {
 					setAllBakery(response.result);
 				} else {
