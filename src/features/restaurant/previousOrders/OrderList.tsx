@@ -9,11 +9,9 @@ import data from "../../../assets/data/order.json";
 import type { formatedOrdersType, orderBakeryType } from "@/types/definitions";
 
 export default function OrdersList({
-	allOrders,
-	setAllOrders,
+	orders,
 }: {
-	allOrders: formatedOrdersType[];
-	setAllOrders: React.Dispatch<React.SetStateAction<formatedOrdersType[]>>;
+	orders: formatedOrdersType[];
 }) {
 	// State of modale
 	const [openSelectedOrderModale, setOpenSelectedOrderModale] = useState(false);
@@ -28,7 +26,7 @@ export default function OrdersList({
 
 	return (
 		<article className="w-full overflow-auto sm:grid sm:grid-cols-2 md:gap-1 xl:w-2/3 xl:mx-auto">
-			{allOrders?.map((e) => (
+			{orders?.map((e) => (
 				<section
 					className="rounded-lg h-fit grid grid-cols-3 items-center bg-light p-2 m-1 inset shadow-dark shadow-sm"
 					key={e.label}
@@ -36,7 +34,7 @@ export default function OrdersList({
 					<h2
 						className={`${titleFont.className} text-xl text-interest mt-3 xl:text-2xl`}
 					>
-						{data.restaurantName}
+						{data.bakeryName}
 					</h2>
 					<p className="text-dark mt-3 col-span-2">{e.label}</p>
 					<h2
@@ -81,8 +79,6 @@ export default function OrdersList({
 				openModale={openSelectedOrderModale}
 				setOpenModale={setOpenSelectedOrderModale}
 				selectedOrder={selectedOrder}
-				setSelectedOrder={setSelectedOrder}
-				setAllOrders={setAllOrders}
 				selectedRestaurant={selectedRestaurant}
 			/>
 		</article>
