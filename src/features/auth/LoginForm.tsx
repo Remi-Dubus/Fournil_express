@@ -38,9 +38,9 @@ export default function LoginForm() {
 			const slug = session && slugify(session?.user.label);
 
 			if (role === "bakery") {
-				router.push(`/${role}/${slug}/products`);
+				router.push(`/${role}/${slug}/orders`);
 			} else if (role === "restaurant") {
-				router.push(`/${role}/${slug}/order`);
+				router.push(`/${role}/${slug}/previous-orders`);
 			} else {
 				router.push("/");
 			}
