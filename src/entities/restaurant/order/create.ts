@@ -4,12 +4,11 @@ import postgres from "postgres";
 import { revalidatePath } from "next/cache";
 import { CreateOrderValidation } from "@/lib/utils/validation";
 
-import type { orderType } from "@/types/definitions";
+import type { orderRestaurantType } from "@/types/definitions";
 
 const sql = postgres(process.env.POSTGRES_URL as string, { ssl: "require" });
 
-export async function createOrder(order: orderType[]) {
-	console.log(order);
+export async function createOrder(order: orderRestaurantType[]) {
 	// Validate field with zod
 	let validateField = null;
 	for (const el of order) {
