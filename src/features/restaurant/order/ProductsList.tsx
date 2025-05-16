@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
-import { useSession } from "next-auth/react";
+import { useSession, getSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 import { regex } from "../../../lib/utils/regex";
-import ReviewOrderModale from "./ReviewOrderModale";
 import { addOrder } from "./addOrder.action";
+import { getRoleSlug, slugify } from "@/lib/utils/slug";
+
+import ReviewOrderModale from "./ReviewOrderModale";
 
 import data from "../../../assets/data/product.json";
 import errorData from "../../../assets/data/error.json";
@@ -36,7 +39,6 @@ export default function ListOfProduct({
 	);
 
 	const handleReviewOrder = (array: Record<string, { quantity: number }[]>) => {
-		console.log(array);
 		// Flat the array
 		const quantities = array.products.map((e) => e.quantity);
 
@@ -52,7 +54,24 @@ export default function ListOfProduct({
 		setReviewOrderModale(true);
 	};
 
+	// Set slugs
+	const [role, setRole] = useState<string | null>(null);
+	const [slug, setSlug] = useState<string | null>(null);
+
+	useEffect(() => {
+		async function fetchSession() {
+			const session = await getSession();
+			if (session) {
+				setRole(getRoleSlug(session.user.id_role));
+				setSlug(slugify(session.user.label));
+			}
+		}
+		fetchSession();
+	}, []);
+
 	// Confirm the order
+	const router = useRouter();
+
 	const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		try {
@@ -65,8 +84,10 @@ export default function ListOfProduct({
 				}
 				setReviewOrderModale(false);
 				reset();
+				router.push(`/${role}/${slug}/previous-orders`);
 			}
 		} catch (error) {
+			console.error(error);
 			toast.error("Une erreur est survenue. Veuillez réessayer.");
 		}
 	};
