@@ -9,6 +9,13 @@ export type registerType = {
 	confirm: string;
 };
 
+export interface SendEmailType {
+	to: string;
+	subject: string;
+	text: string;
+	html?: string;
+}
+
 export type companyType = {
 	id: string;
 	label: string;
