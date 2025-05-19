@@ -2,12 +2,12 @@ import { titleFont } from "@/assets/fonts/font";
 
 import { toast } from "react-toastify";
 import formatDate from "@/lib/utils/formatDate";
-import { switchValidateOrder } from "./validateOrder.action";
 
 import orderData from "../../../assets/data/order.json";
 import productData from "../../../assets/data/product.json";
 
 import type { formatedOrdersType, orderBakeryType } from "@/types/definitions";
+import { switchValidateOrderStatus } from "@/services/order/switchValidateOrderStatus";
 
 export default function OrderModale({
 	openModale,
@@ -34,15 +34,26 @@ export default function OrderModale({
 		}
 	}
 
-	// Button for switch between validate and await for validation
+	// Button for switch between validate and refuse
 	const handleSwitchValidate = async (id_order: string) => {
-		// Switch between validate and await for validation
-		console.log(selectedOrder?.validate);
-		const currentState = !selectedOrder?.validate;
+		// If status is cancel return a toast
+		if (selectedOrder?.validate === 3) {
+			toast.error("La commande à déjà été annulé par le restaurant.");
+			return;
+		}
+
+		// Switch between validate and refuse
+		let currentState = selectedOrder?.validate;
+		if (currentState === 0 || currentState === 2) {
+			currentState = 1;
+		} else {
+			currentState = 2;
+		}
+
 		const newState = { id_order, currentState };
 
 		try {
-			const response = await switchValidateOrder(newState);
+			const response = await switchValidateOrderStatus(newState);
 
 			if (!response) {
 				toast.error("Une erreur est survenue. Veuillez réesayer.");
@@ -114,16 +125,20 @@ export default function OrderModale({
 				</h2>
 				<button
 					type="button"
-					className={`h-8 border-2 ${titleFont.className} text-light mb-3 rounded-lg inset shadow-dark shadow-sm xl:text-xl ${selectedOrder?.validate === false ? "bg-interest outline-interest active:text-light active:bg-orange-600" : "bg-green-500 outline-green-500 active:text-light active:bg-green-800"}`}
+					className={`h-8 border-2 ${titleFont.className} text-light mb-3 rounded-lg inset shadow-dark shadow-sm xl:text-xl ${selectedOrder?.validate === 0 ? "bg-dark outline-dark active:bg-interest" : selectedOrder?.validate === 1 ? "bg-green-500 outline-green-500 active:text-light active:bg-green-800" : "bg-interest outline-interest active:text-light active:bg-orange-600"}`}
 					onClick={() => {
 						if (selectedOrder?.booking_id) {
 							handleSwitchValidate(selectedOrder?.booking_id);
 						}
 					}}
 				>
-					{selectedOrder?.validate === false
+					{selectedOrder?.validate === 0
 						? orderData.pending
-						: orderData.validate}
+						: selectedOrder?.validate === 1
+							? orderData.validate
+							: selectedOrder?.validate === 2
+								? orderData.refuse
+								: orderData.cancel}
 				</button>
 				<button
 					type="button"

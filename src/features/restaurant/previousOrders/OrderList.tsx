@@ -10,8 +10,10 @@ import type { formatedOrdersType, orderBakeryType } from "@/types/definitions";
 
 export default function OrdersList({
 	orders,
+	setOrders,
 }: {
 	orders: formatedOrdersType[];
+	setOrders: React.Dispatch<React.SetStateAction<formatedOrdersType[]>>;
 }) {
 	// State of modale
 	const [openSelectedOrderModale, setOpenSelectedOrderModale] = useState(false);
@@ -20,9 +22,7 @@ export default function OrdersList({
 	const [selectedOrder, setSelectedOrder] = useState<orderBakeryType | null>(
 		null,
 	);
-	const [selectedRestaurant, setSelectedRestaurant] = useState<string[] | null>(
-		null,
-	);
+	const [selectedBakery, setSelectedBakery] = useState<string[] | null>(null);
 
 	return (
 		<article className="w-full overflow-auto sm:grid sm:grid-cols-2 md:gap-1 xl:w-2/3 xl:mx-auto">
@@ -50,7 +50,7 @@ export default function OrdersList({
 							type="button"
 							onClick={() => {
 								setSelectedOrder(o);
-								setSelectedRestaurant([e.label, e.email]);
+								setSelectedBakery([e.label, e.email]);
 								setOpenSelectedOrderModale(true);
 							}}
 							className="list-none col-span-3 grid grid-cols-3 items-center gap-1 px-2 rounded-lg mb-1 p-2 text-dark active:bg-interest"
@@ -66,9 +66,15 @@ export default function OrdersList({
 							</li>
 							<li className="flex flex-col h-full bg-white items-center justify-center text-sm  px-2 rounded-lg">
 								<p
-									className={`${o.validate === false ? "text-interest" : "text-green-500"}`}
+									className={`${o.validate === 0 ? "text-dark" : o.validate === 1 ? "text-green-500" : "text-interest"}`}
 								>
-									{o?.validate === false ? data.pending : data.validate}
+									{o?.validate === 0
+										? data.pending
+										: o?.validate === 1
+											? data.validate
+											: o?.validate === 2
+												? data.refuse
+												: data.cancel}
 								</p>
 							</li>
 						</button>
@@ -79,7 +85,9 @@ export default function OrdersList({
 				openModale={openSelectedOrderModale}
 				setOpenModale={setOpenSelectedOrderModale}
 				selectedOrder={selectedOrder}
-				selectedRestaurant={selectedRestaurant}
+				setSelectedOrder={setSelectedOrder}
+				setOrders={setOrders}
+				selectedBakery={selectedBakery}
 			/>
 		</article>
 	);

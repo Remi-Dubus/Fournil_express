@@ -9,8 +9,10 @@
 	"restaurantName": "Restaurant: ",
 	"bakeryName": "Boulangerie: ",
 	"date": "Date: ",
+	"pending": "En attente...",
 	"validate": "Validé",
-	"pending": "Non-validé",
+	"refuse": "Refusé",
+	"cancel": "Annulé",
 	"noOrder": "Aucune commande.",
 	"confirmButton": "Confirmer",
 	"glassAlt": "Icone of magnifying glass"

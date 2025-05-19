@@ -49,7 +49,7 @@ export type orderBakeryType = {
 	booking_id: string;
 	order_number: number;
 	date: string;
-	validate: boolean;
+	validate: number;
 	hidden_bakery?: boolean;
 	products: orderProductType[];
 };
@@ -69,7 +69,7 @@ export type ordersListType = {
 	product_name: string;
 	price: number;
 	quantity: number;
-	validate: boolean;
+	validate: number;
 	hidden_bakery: boolean;
 	product_id: string;
 };

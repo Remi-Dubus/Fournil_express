@@ -40,7 +40,7 @@ export default function Page() {
 			>
 				{data.ordersList}
 			</h2>
-			<OrdersList orders={orders} />
+			<OrdersList orders={orders} setOrders={setOrders} />
 			{orders?.length === 0 && <p>{data.noOrder}</p>}
 		</main>
 	);

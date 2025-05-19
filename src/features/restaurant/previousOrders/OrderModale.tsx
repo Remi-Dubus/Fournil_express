@@ -1,22 +1,28 @@
 import { titleFont } from "@/assets/fonts/font";
 
+import { toast } from "react-toastify";
 import formatDate from "@/lib/utils/formatDate";
 
 import orderData from "../../../assets/data/order.json";
 import productData from "../../../assets/data/product.json";
 
 import type { formatedOrdersType, orderBakeryType } from "@/types/definitions";
+import { switchValidateOrderStatus } from "@/services/order/switchValidateOrderStatus";
 
 export default function OrderModale({
 	openModale,
 	setOpenModale,
 	selectedOrder,
-	selectedRestaurant,
+	setSelectedOrder,
+	setOrders,
+	selectedBakery,
 }: {
 	setOpenModale: (bool: boolean) => void;
 	openModale: boolean;
 	selectedOrder: orderBakeryType | null;
-	selectedRestaurant: string[] | null;
+	setSelectedOrder: (order: orderBakeryType | null) => void;
+	setOrders: React.Dispatch<React.SetStateAction<formatedOrdersType[]>>;
+	selectedBakery: string[] | null;
 }) {
 	// Total price of order
 	let totalPriceOfOrder = 0;
@@ -27,6 +33,55 @@ export default function OrderModale({
 				totalPriceOfOrder = totalPriceOfOrder + el?.quantity * el.price;
 		}
 	}
+
+	// Button for switch between pending and cancel
+	const handleSwitchValidate = async (id_order: string) => {
+		// If status is cancel return a toast
+		if (selectedOrder?.validate === 2) {
+			toast.error("La commande à déjà été refusé par la boulangerie.");
+			return;
+		}
+
+		// Switch between pending and cancel
+		let currentState = selectedOrder?.validate;
+		if (currentState === 0) {
+			currentState = 3;
+		} else {
+			currentState = 0;
+		}
+
+		const newState = { id_order, currentState };
+
+		try {
+			const response = await switchValidateOrderStatus(newState);
+
+			if (!response) {
+				toast.error("Une erreur est survenue. Veuillez réesayer.");
+			} else {
+				// Update state of the modale
+				if (selectedOrder?.booking_id) {
+					const updatedOrder: orderBakeryType = {
+						...selectedOrder,
+						validate: currentState,
+					};
+					setSelectedOrder(updatedOrder);
+				}
+				// Update state of order list
+				setOrders((prevState) =>
+					prevState.map((client) => ({
+						...client,
+						orders: client.orders.map((order) =>
+							order.booking_id === id_order
+								? { ...order, validate: currentState }
+								: order,
+						),
+					})),
+				);
+			}
+		} catch (err) {
+			toast.error("Une erreur est survenue. Veuillez réessayer.");
+		}
+	};
 
 	return (
 		<article
@@ -48,13 +103,13 @@ export default function OrderModale({
 				>
 					{orderData.restaurantName}
 				</h2>
-				<p className="text-dark col-span-2">{selectedRestaurant?.[0]}</p>
+				<p className="text-dark col-span-2">{selectedBakery?.[0]}</p>
 				<h2
 					className={`${titleFont.className} text-xl text-interest xl:text-2xl`}
 				>
 					{orderData.emailRestaurant}
 				</h2>
-				<p className="text-dark col-span-2">{selectedRestaurant?.[1]}</p>
+				<p className="text-dark col-span-2">{selectedBakery?.[1]}</p>
 				<h2
 					className={`${titleFont.className} text-xl text-interest xl:text-2xl`}
 				>
@@ -68,13 +123,23 @@ export default function OrderModale({
 				>
 					{orderData.orderState}
 				</h2>
-				<p
-					className={`h-8 xl:text-xl ${selectedOrder?.validate === false ? "text-interest" : "text-green-500"}`}
+				<button
+					type="button"
+					className={`h-8 border-2 ${titleFont.className} text-light mb-3 rounded-lg inset shadow-dark shadow-sm xl:text-xl ${selectedOrder?.validate === 0 ? "bg-dark outline-dark active:bg-interest" : selectedOrder?.validate === 1 ? "bg-green-500 outline-green-500 active:text-light active:bg-green-800" : "bg-interest outline-interest active:text-light active:bg-orange-600"}`}
+					onClick={() => {
+						if (selectedOrder?.booking_id) {
+							handleSwitchValidate(selectedOrder?.booking_id);
+						}
+					}}
 				>
-					{selectedOrder?.validate === false
+					{selectedOrder?.validate === 0
 						? orderData.pending
-						: orderData.validate}
-				</p>
+						: selectedOrder?.validate === 1
+							? orderData.validate
+							: selectedOrder?.validate === 2
+								? orderData.refuse
+								: orderData.cancel}
+				</button>
 				<button
 					type="button"
 					className={`h-8 border-2 ${titleFont.className} text-light mb-3 rounded-lg inset shadow-dark shadow-sm xl:text-xl bg-red-700 outline-red-700`}
