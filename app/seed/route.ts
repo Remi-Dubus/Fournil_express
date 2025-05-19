@@ -43,7 +43,7 @@ async function seedBooking() {
         CREATE TABLE IF NOT EXISTS booking (
             id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
             order_number INT GENERATED ALWAYS AS IDENTITY UNIQUE,
-            validate BOOLEAN NOT NULL DEFAULT false,
+            validate INT NOT NULL DEFAULT 0,
             id_bakery UUID,
             id_restaurant UUID NOT NULL,
             hidden_bakery BOOLEAN NOT NULL DEFAULT false,
