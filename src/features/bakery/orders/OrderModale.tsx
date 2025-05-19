@@ -5,9 +5,9 @@ import formatDate from "@/lib/utils/formatDate";
 
 import orderData from "../../../assets/data/order.json";
 import productData from "../../../assets/data/product.json";
-
-import type { formatedOrdersType, orderBakeryType } from "@/types/definitions";
 import { switchValidateOrderStatus } from "@/services/order/switchValidateOrderStatus";
+
+import type { formatedOrdersType, ordersType } from "@/types/definitions";
 
 export default function OrderModale({
 	openModale,
@@ -19,8 +19,8 @@ export default function OrderModale({
 }: {
 	setOpenModale: (bool: boolean) => void;
 	openModale: boolean;
-	selectedOrder: orderBakeryType | null;
-	setSelectedOrder: (order: orderBakeryType | null) => void;
+	selectedOrder: ordersType | null;
+	setSelectedOrder: (order: ordersType | null) => void;
 	setAllOrders: React.Dispatch<React.SetStateAction<formatedOrdersType[]>>;
 	selectedRestaurant: string[] | null;
 }) {
@@ -60,7 +60,7 @@ export default function OrderModale({
 			} else {
 				// Update state of the modale
 				if (selectedOrder?.booking_id) {
-					const updatedOrder: orderBakeryType = {
+					const updatedOrder: ordersType = {
 						...selectedOrder,
 						validate: currentState,
 					};

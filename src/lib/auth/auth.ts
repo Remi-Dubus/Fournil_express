@@ -28,11 +28,11 @@ export const authOptions = {
 				if (!user) throw new Error("Email ou mot de passe invalide.");
 
 				// Find if email is validate
-				if (!user.email_verification) {
+				/* if (!user.email_verification) {
 					throw new Error(
 						"Vous devez confirmer votre adresse email avant de vous connecter.",
 					);
-				}
+				} */
 
 				// Hash the password
 				const isPasswordValid = await verifyPassword(password, user.password);

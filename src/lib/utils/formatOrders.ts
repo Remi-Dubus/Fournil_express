@@ -19,6 +19,7 @@ export default function formatOrders(
 			quantity,
 			validate,
 			hidden_bakery,
+			hidden_restaurant,
 			product_id,
 		} = order;
 
@@ -44,6 +45,7 @@ export default function formatOrders(
 				date: new Date(date).toISOString(),
 				validate,
 				hidden_bakery,
+				hidden_restaurant,
 				products: [],
 			};
 			groupedByRestaurant[restaurant_name].orders.push(existingOrder);
