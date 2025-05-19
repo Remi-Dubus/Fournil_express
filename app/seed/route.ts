@@ -28,7 +28,9 @@ async function seedCompany() {
             picture VARCHAR(255),
             tel VARCHAR(20),
             email VARCHAR(150) NOT NULL UNIQUE,
-            email_confirm BOOLEAN NOT NULL DEFAULT FALSE,
+            email_verification BOOLEAN NOT NULL DEFAULT FALSE,
+            email_verification_token TEXT,
+            email_verification_expires TIMESTAMP,
             password VARCHAR(150) NOT NULL,
             id_role INT NOT NULL DEFAULT 1,
             FOREIGN KEY (id_role) REFERENCES role(id)

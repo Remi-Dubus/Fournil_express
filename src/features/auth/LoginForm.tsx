@@ -45,7 +45,7 @@ export default function LoginForm() {
 				router.push("/");
 			}
 		} else {
-			setError("Email ou mot de passe invalide.");
+			if (res) setError(res?.error);
 		}
 
 		setLoading(false);
@@ -77,7 +77,6 @@ export default function LoginForm() {
 							className="bg-white inset-shadow-dark text-dark rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
 							placeholder="name@company.com"
 						/>
-						{error && <p className="text-red-800">{error}</p>}
 					</fieldset>
 					<fieldset className="w-full">
 						<label
@@ -93,7 +92,7 @@ export default function LoginForm() {
 							placeholder="••••••••••••••••"
 							className="bg-white text-dark inset-shadow-dark rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
 						/>
-						{error && <p className="text-red-800">{error}</p>}
+						{error && <p className="text-red-800 lg:mt-2">{error}</p>}
 					</fieldset>
 					<button
 						type="submit"

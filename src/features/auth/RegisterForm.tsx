@@ -3,7 +3,6 @@
 import { titleFont } from "@/assets/fonts/font";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 
@@ -26,8 +25,6 @@ export default function RegisterForm() {
 	} = useForm<registerType>();
 
 	// Button for submit the register form
-	const router = useRouter();
-
 	const handleRegister = async (registerForm: registerType) => {
 		try {
 			const response = await addAccount(registerForm);
@@ -36,10 +33,8 @@ export default function RegisterForm() {
 				toast.error(response.message);
 				return;
 			}
-
 			toast.success(response.message);
 			reset();
-			router.push("#connect");
 		} catch (err) {
 			toast.error("Une erreur est survenue.");
 		}

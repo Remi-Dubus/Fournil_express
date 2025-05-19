@@ -1,6 +1,9 @@
 "use server";
 
 import postgres from "postgres";
+import { v4 as uuidv4 } from "uuid";
+import { addHours } from "date-fns";
+import { sendEmail } from "@/lib/utils/sendEmail";
 
 import type { registerType } from "@/types/definitions";
 import { CreateAccountValidation } from "@/lib/utils/validation";
@@ -44,19 +47,32 @@ export async function createAccount(registerForm: registerType) {
 		// Hash the password
 		const hashedPassword = await hashPassword(password);
 
+		// Create token and expiration date
+		const emailVerificationToken = uuidv4();
+		const emailVerificationExpires = addHours(new Date(), 4);
+
 		// Add to database
-		await sql`
-			INSERT INTO company (label, tel, email, id_role, password)
-			VALUES (${company}, ${phone}, ${email}, ${id_role}, ${hashedPassword})
+		await sql`INSERT INTO company (label, tel, email, id_role, password, email_verification_token, email_verification_expires)
+			VALUES (${company}, ${phone}, ${email}, ${id_role}, ${hashedPassword}, ${emailVerificationToken}, ${emailVerificationExpires})
 		`;
+
+		// Send verification email
+		const verificationLink = `http://localhost:3000/api/verify-email?token=${emailVerificationToken}`;
+		await sendEmail({
+			to: email,
+			subject: "Confirmez votre adresse email",
+			text: `Merci de confirmer votre adresse email en cliquant sur ce lien : ${verificationLink}. Ceci est un message automatique merci de ne pas y repondre.`,
+		});
 
 		revalidatePath("/");
 
 		return {
 			success: true,
-			message: "Votre compte a bien été créé.",
+			message:
+				"Votre compte a bien été créé. Veuillez consulter votre adresse email afin de valider votre compte.",
 		};
 	} catch (err) {
+		console.error(err);
 		return {
 			success: false,
 			message:
