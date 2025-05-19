@@ -23,7 +23,7 @@ export type companyType = {
 };
 
 export type productType = {
-	id?: number;
+	id?: string;
 	label: string;
 	price: number;
 	id_bakery: string;
@@ -45,19 +45,20 @@ export type orderProductType = {
 	id: string;
 };
 
-export type orderBakeryType = {
+export type ordersType = {
 	booking_id: string;
 	order_number: number;
 	date: string;
 	validate: number;
 	hidden_bakery?: boolean;
+	hidden_restaurant?: boolean;
 	products: orderProductType[];
 };
 
 export type formatedOrdersType = {
 	label: string;
 	email: string;
-	orders: orderBakeryType[];
+	orders: ordersType[];
 };
 
 export type ordersListType = {
@@ -71,6 +72,7 @@ export type ordersListType = {
 	quantity: number;
 	validate: number;
 	hidden_bakery: boolean;
+	hidden_restaurant: boolean;
 	product_id: string;
 };
 
@@ -82,6 +84,6 @@ export type deleteType = {
 export type modaleDeleteType = {
 	openModale: boolean;
 	setOpenModale: (bool: boolean) => void;
-	current?: number;
+	current?: string;
 	handleDelete: (id: string) => void;
 };

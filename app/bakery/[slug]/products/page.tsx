@@ -41,7 +41,7 @@ export default function Page() {
 	}, [id_bakery]);
 
 	// Delete a product
-	const [currentProduct, setCurrentProduct] = useState<number>();
+	const [currentProduct, setCurrentProduct] = useState<string>();
 
 	const handleDeleteProduct = async (id: string) => {
 		try {

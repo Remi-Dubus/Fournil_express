@@ -10,7 +10,7 @@ export default function ProductsList({
 	setConfirmDeleteModale,
 }: {
 	allProducts: productType[];
-	setCurrentProduct: (n: number) => void;
+	setCurrentProduct: (n: string) => void;
 	setConfirmDeleteModale: (bool: boolean) => void;
 }) {
 	return (

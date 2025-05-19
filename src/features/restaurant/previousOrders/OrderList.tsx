@@ -6,7 +6,7 @@ import OrderModale from "./OrderModale";
 
 import data from "../../../assets/data/order.json";
 
-import type { formatedOrdersType, orderBakeryType } from "@/types/definitions";
+import type { formatedOrdersType, ordersType } from "@/types/definitions";
 
 export default function OrdersList({
 	orders,
@@ -19,9 +19,7 @@ export default function OrdersList({
 	const [openSelectedOrderModale, setOpenSelectedOrderModale] = useState(false);
 
 	// Selected order
-	const [selectedOrder, setSelectedOrder] = useState<orderBakeryType | null>(
-		null,
-	);
+	const [selectedOrder, setSelectedOrder] = useState<ordersType | null>(null);
 	const [selectedBakery, setSelectedBakery] = useState<string[] | null>(null);
 
 	return (
