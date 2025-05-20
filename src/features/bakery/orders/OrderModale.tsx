@@ -1,11 +1,14 @@
 import { titleFont } from "@/assets/fonts/font";
 
 import { toast } from "react-toastify";
-import formatDate from "@/lib/utils/formatDate";
+import { useState } from "react";
 
+import formatDate from "@/lib/utils/formatDate";
 import orderData from "../../../assets/data/order.json";
 import productData from "../../../assets/data/product.json";
 import { switchValidateOrderStatus } from "@/services/order/switchValidateOrderStatus";
+import { destroyOrder } from "./destroyOrder.action";
+import ConfirmDeleteModale from "@/components/ui/ConfirmDeleteModale";
 
 import type { formatedOrdersType, ordersType } from "@/types/definitions";
 
@@ -24,6 +27,9 @@ export default function OrderModale({
 	setAllOrders: React.Dispatch<React.SetStateAction<formatedOrdersType[]>>;
 	selectedRestaurant: string[] | null;
 }) {
+	// State of modale;
+	const [confirmDeleteModale, setConfirmDeleteModale] = useState(false);
+
 	// Total price of order
 	let totalPriceOfOrder = 0;
 
@@ -83,13 +89,44 @@ export default function OrderModale({
 		}
 	};
 
+	// Button for delete an order
+	const handleDeleteOrder = async (id_order: string) => {
+		const orderToDelete = {
+			id_order,
+			hiddenRestaurant: !!selectedOrder?.hidden_restaurant,
+			hiddenBakery: true,
+		};
+
+		try {
+			const response = await destroyOrder(orderToDelete);
+
+			if (!response.success) {
+				toast.error(response.message);
+			} else {
+				setAllOrders((prevState) =>
+					prevState
+						.map((e) => ({
+							...e,
+							orders: e.orders.filter((o) => o.booking_id !== id_order),
+						}))
+						.filter((e) => e.orders.length > 0),
+				);
+				toast.success(response.message);
+				setOpenModale(false);
+				setConfirmDeleteModale(false);
+			}
+		} catch (err) {
+			toast.error("Une erreur est survenue. Veuillez réessayer.");
+		}
+	};
+
 	return (
 		<article
 			className={`h-[100vh] inset-0 overflow-hidden top-0 fixed bg-black/30 backdrop-blur-sm flex justify-center items-center z-10 transition-all duration-1000 ${
 				openModale
 					? "opacity-100 lg:bg-opacity-0 lg:backdrop-blur-0"
 					: "opacity-0 pointer-events-none"
-			}`}
+			} ${confirmDeleteModale ? "backdrop-blur-none" : "backdrop-blur-sm"}`}
 		>
 			<section
 				className={`overflow-y-auto grid grid-cols-3 items-center w-11/12 gap-2 px-1 py-2 bg-light rounded-lg shadow-lg transform duration-1000 ease-in-out sm:w-8/12 sm:px-4 xl:w-1/3 ${openModale ? "translate-y-0" : "translate-y-full"}`}
@@ -143,6 +180,9 @@ export default function OrderModale({
 				<button
 					type="button"
 					className={`h-8 border-2 ${titleFont.className} text-light mb-3 rounded-lg inset shadow-dark shadow-sm xl:text-xl bg-red-700 outline-red-700`}
+					onClick={() => {
+						setConfirmDeleteModale(true);
+					}}
 				>
 					{productData.deleteButton}
 				</button>
@@ -189,6 +229,12 @@ export default function OrderModale({
 					retour
 				</button>
 			</section>
+			<ConfirmDeleteModale
+				openModale={confirmDeleteModale}
+				setOpenModale={setConfirmDeleteModale}
+				current={selectedOrder?.booking_id}
+				handleDelete={handleDeleteOrder}
+			/>
 		</article>
 	);
 }
