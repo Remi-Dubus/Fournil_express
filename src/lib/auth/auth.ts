@@ -25,10 +25,10 @@ export const authOptions = {
 
 				// Find if email exist
 				const user = await getUserByEmail(email);
-				if (!user) throw new Error("Email ou mot de passe invalide.");
+				if (user?.message) throw new Error(user?.message);
 
 				// Find if email is validate
-				if (!user.email_verification) {
+				if (!user?.email_verification) {
 					throw new Error(
 						"Vous devez confirmer votre adresse email avant de vous connecter.",
 					);
