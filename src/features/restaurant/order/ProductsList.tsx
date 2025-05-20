@@ -50,7 +50,8 @@ export default function ListOfProduct({
 				id_restaurant: session?.user.id,
 			};
 		});
-		setReviewOrder(updatedList);
+		console.log(updatedList);
+		if (updatedList) setReviewOrder(updatedList);
 		setReviewOrderModale(true);
 	};
 
