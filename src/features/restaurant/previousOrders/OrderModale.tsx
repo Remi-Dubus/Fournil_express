@@ -8,9 +8,9 @@ import orderData from "../../../assets/data/order.json";
 import productData from "../../../assets/data/product.json";
 import ConfirmDeleteModale from "@/components/ui/ConfirmDeleteModale";
 import { switchValidateOrderStatus } from "@/services/order/switchValidateOrderStatus";
+import { destroyOrder } from "./destroyOrder.action";
 
 import type { formatedOrdersType, ordersType } from "@/types/definitions";
-import { deleteOrder } from "@/entities/restaurant/order/delete";
 
 export default function OrderModale({
 	openModale,
@@ -98,7 +98,7 @@ export default function OrderModale({
 		};
 
 		try {
-			const response = await deleteOrder(orderToDelete);
+			const response = await destroyOrder(orderToDelete);
 
 			if (!response.success) {
 				toast.error(response.message);
