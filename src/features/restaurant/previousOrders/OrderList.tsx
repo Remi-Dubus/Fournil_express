@@ -23,7 +23,9 @@ export default function OrdersList({
 	const [selectedBakery, setSelectedBakery] = useState<string[] | null>(null);
 
 	return (
-		<article className="w-full overflow-auto sm:grid sm:grid-cols-2 md:gap-1 xl:w-2/3 xl:mx-auto">
+		<article
+			className={`w-full overflow-auto ${orders.length > 1 ? " sm:grid sm:grid-cols-2" : "sm:flex sm:justify-center"} xl:w-2/3 md:gap-1 xl:mx-auto`}
+		>
 			{orders?.map((e) => (
 				<section
 					className="rounded-lg h-fit grid grid-cols-3 items-center bg-light p-2 m-1 inset shadow-dark shadow-sm"
