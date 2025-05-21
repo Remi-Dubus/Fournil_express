@@ -25,7 +25,9 @@ export default function OrdersList({
 	);
 
 	return (
-		<article className="w-full overflow-auto sm:grid sm:grid-cols-2 md:gap-1 xl:w-2/3 xl:mx-auto">
+		<article
+			className={`w-full overflow-auto ${allOrders.length > 1 ? " sm:grid sm:grid-cols-2" : "sm:flex sm:justify-center"} xl:w-2/3 md:gap-1 xl:mx-auto`}
+		>
 			{allOrders?.map((e) => (
 				<section
 					className="rounded-lg h-fit grid grid-cols-3 items-center bg-light p-2 m-1 inset shadow-dark shadow-sm"

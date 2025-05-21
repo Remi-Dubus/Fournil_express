@@ -30,7 +30,7 @@ export type productType = {
 };
 
 export type orderRestaurantType = {
-	id?: number;
+	id?: string;
 	label: string;
 	price: number;
 	quantity?: number;
