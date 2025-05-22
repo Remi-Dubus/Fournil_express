@@ -63,6 +63,7 @@ async function seedProduct() {
             label VARCHAR(150) NOT NULL,
             picture VARCHAR(255),
             price FLOAT NOT NULL,
+            deleted_at TIMESTAMP,
             id_bakery UUID NOT NULL,
             FOREIGN KEY (id_bakery) REFERENCES company(id)
         );
