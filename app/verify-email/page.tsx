@@ -4,9 +4,9 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { titleFont } from "@/assets/fonts/font";
 
-export default function verifyEmail() {
-	const params = useSearchParams;
-	const status = params().get("status");
+export default function VerifyEmail() {
+	const params = useSearchParams();
+	const status = params.get("status");
 
 	let message =
 		"Email vérifié avec succès! Vous pouvez dès à présent vous connecter.";
