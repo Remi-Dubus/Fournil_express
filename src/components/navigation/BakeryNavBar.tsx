@@ -68,16 +68,6 @@ export default function burgerMenuCompany() {
 				</button>
 				<button
 					type="button"
-					className="bg-dark py-2 px-6 rounded-lg border-light border-2 active:bg-light active:text-dark active:border-dark xl:hover:text-interest xl:bg-light xl:text-dark xl:active:text-gray-600 xl:border-none"
-					onClick={() => {
-						setOpenBurgerMenu(false);
-						redirect(`/${role}/${slug}/invoices`);
-					}}
-				>
-					{data.mounthyInvoices}
-				</button>
-				<button
-					type="button"
 					className="bg-dark py-2 px-3.5 rounded-lg border-light border-2 active:bg-light active:text-dark active:border-dark xl:hover:text-interest xl:bg-light xl:text-dark xl:active:text-gray-600 xl:border-none xl:absolute xl:bottom-18 xl:w-full"
 					onClick={() => signOut()}
 				>
