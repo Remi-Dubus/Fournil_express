@@ -86,8 +86,7 @@ export default function ListOfProduct({
 				reset();
 				router.push(`/${role}/${slug}/previous-orders`);
 			}
-		} catch (error) {
-			console.error(error);
+		} catch {
 			toast.error("Une erreur est survenue. Veuillez réessayer.");
 		}
 	};

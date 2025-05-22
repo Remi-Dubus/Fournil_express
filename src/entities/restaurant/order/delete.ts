@@ -36,7 +36,7 @@ export async function deleteOrder(order: Record<string, string | boolean>) {
 			success: true,
 			message: "La commande a bien été supprimée.",
 		};
-	} catch (err) {
+	} catch {
 		return {
 			success: false,
 			message: "Une erreur est survenue. Veuillez réessayer.",

@@ -68,7 +68,7 @@ export async function createOrder(order: orderRestaurantType[]) {
 				message: "La commande est passée.",
 			};
 		}
-	} catch (error) {
+	} catch {
 		return {
 			success: false,
 			message: "Une erreur est survenue. Veuillez réessayer.",

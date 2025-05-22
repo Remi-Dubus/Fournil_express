@@ -15,7 +15,7 @@ export const getUserByEmail = async (email: string) => {
 			return null;
 		}
 		return result[0];
-	} catch (err) {
+	} catch {
 		return {
 			message: "Email ou mot de passe invalide.",
 		};
