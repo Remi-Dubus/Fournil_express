@@ -15,7 +15,7 @@ export async function readAllBakery() {
 		return {
 			result: result,
 		};
-	} catch (err) {
+	} catch {
 		return {
 			message: "Une erreur est survenue. Veuillez réessayer.",
 		};

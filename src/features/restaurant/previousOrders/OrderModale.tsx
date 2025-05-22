@@ -84,7 +84,7 @@ export default function OrderModale({
 					})),
 				);
 			}
-		} catch (err) {
+		} catch {
 			toast.error("Une erreur est survenue. Veuillez réessayer.");
 		}
 	};
@@ -115,7 +115,7 @@ export default function OrderModale({
 				setOpenModale(false);
 				setConfirmDeleteModale(false);
 			}
-		} catch (err) {
+		} catch {
 			toast.error("Une erreur est survenue. Veuillez réessayer.");
 		}
 	};

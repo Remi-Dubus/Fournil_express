@@ -26,7 +26,9 @@ export default function ProductsList({
 						type="button"
 						className="bg-red-800 py-1 col-span-2 rounded-full text-sm text-light active:bg-orange-300 active:text-dark shadow-dark shadow-sm"
 						onClick={() => {
-							e.id && setCurrentProduct(e.id);
+							if (e.id) {
+								setCurrentProduct(e.id);
+							}
 							setConfirmDeleteModale(true);
 						}}
 					>

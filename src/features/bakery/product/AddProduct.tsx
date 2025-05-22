@@ -63,7 +63,7 @@ export default function AddProduct({
 				setAllProducts(newAllProducts);
 				reset();
 			}
-		} catch (err) {
+		} catch {
 			toast.error("Une erreur est survenue. Veuillez réessayer.");
 		}
 	};
