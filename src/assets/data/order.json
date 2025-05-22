@@ -1,0 +1,19 @@
+{
+	"orderTitle": "Passer une commande",
+	"chooseBakery": "Choisissez la boulangerie dans laquelle vous souhaitez passer votre commande.",
+	"selectBakery": "Selectionnez une boulangerie",
+	"ordersList": "Liste des commandes",
+	"orderNumber": "Commande n°",
+	"orderState": "Status: ",
+	"emailRestaurant": "Email: ",
+	"restaurantName": "Restaurant: ",
+	"bakeryName": "Boulangerie: ",
+	"date": "Date: ",
+	"pending": "En attente...",
+	"validate": "Validé",
+	"refuse": "Refusé",
+	"cancel": "Annulé",
+	"noOrder": "Aucune commande.",
+	"confirmButton": "Confirmer",
+	"glassAlt": "Icone of magnifying glass"
+}
