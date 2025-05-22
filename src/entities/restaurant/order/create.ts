@@ -12,6 +12,13 @@ export async function createOrder(order: orderRestaurantType[]) {
 	// Filtered orders to exclude products with zero quantity
 	const newOrder = order.filter((e) => e.quantity !== 0);
 
+	if (newOrder.length === 0) {
+		return {
+			success: false,
+			message: "Champ manquant.",
+		};
+	}
+
 	// Validate field with zod
 	let validateField = null;
 	for (const el of newOrder) {
@@ -68,7 +75,7 @@ export async function createOrder(order: orderRestaurantType[]) {
 				message: "La commande est passée.",
 			};
 		}
-	} catch (error) {
+	} catch {
 		return {
 			success: false,
 			message: "Une erreur est survenue. Veuillez réessayer.",

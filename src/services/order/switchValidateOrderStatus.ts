@@ -17,7 +17,7 @@ export async function switchValidateOrderStatus(
 		return {
 			result: result,
 		};
-	} catch (err) {
+	} catch {
 		return {
 			result: null,
 		};

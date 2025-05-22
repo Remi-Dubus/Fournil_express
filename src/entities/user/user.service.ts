@@ -57,7 +57,7 @@ export async function createAccount(registerForm: registerType) {
 		`;
 
 		// Send verification email
-		const verificationLink = `http://localhost:3000/api/verify-email?token=${emailVerificationToken}`;
+		const verificationLink = `https://fournil-express.vercel.app/api/verify-email?token=${emailVerificationToken}`;
 		await sendEmail({
 			to: email,
 			subject: "Confirmez votre adresse email",
@@ -71,8 +71,7 @@ export async function createAccount(registerForm: registerType) {
 			message:
 				"Votre compte a bien été créé. Veuillez consulter votre adresse email afin de valider votre compte.",
 		};
-	} catch (err) {
-		console.error(err);
+	} catch {
 		return {
 			success: false,
 			message:

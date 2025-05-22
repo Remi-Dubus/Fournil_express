@@ -20,7 +20,7 @@ export async function deleteProduct(ids: deleteType) {
 				message: "Le produit a bien été supprimé.",
 			};
 		}
-	} catch (err) {
+	} catch {
 		return {
 			success: false,
 			message: "Une erreur est survenue. Veuillez réessayer.",

@@ -45,7 +45,7 @@ export async function createProduct(productForm: productType) {
 			message: "Le produit a bien été créé.",
 			product: result[0],
 		};
-	} catch (err) {
+	} catch {
 		return {
 			message: "Une erreur est survenue. Veuillez réessayer.",
 		};
