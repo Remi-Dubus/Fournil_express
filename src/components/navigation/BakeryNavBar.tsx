@@ -12,7 +12,7 @@ import { getRoleSlug, slugify } from "@/lib/utils/slug";
 
 import data from "../../assets/data/navbar/bakeryNavBar.json";
 
-export default function MurgerMenuCompany() {
+export default function BurgerMenuCompany() {
 	// State of menu
 	const [openBurgerMenu, setOpenBurgerMenu] = useState(false);
 	const handleClickMenu = () => setOpenBurgerMenu(!openBurgerMenu);
