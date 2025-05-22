@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { titleFont } from "@/assets/fonts/font";
 
-export default function merifyEmail() {
+export default function VerifyEmail() {
 	const params = useSearchParams();
 	const status = params.get("status");
 
