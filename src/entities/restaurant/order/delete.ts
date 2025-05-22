@@ -16,6 +16,13 @@ export async function deleteOrder(order: Record<string, string | boolean>) {
 			await sql`
                 DELETE FROM booking WHERE id = ${id_order}
             `;
+			await sql`
+				DELETE FROM product
+				WHERE deleted_at IS NOT NULL
+				AND id NOT IN (
+					SELECT DISTINCT id_product FROM booking_product
+				)
+			`;
 		} else {
 			await sql`
                 UPDATE booking SET hidden_restaurant = ${hiddenRestaurant} WHERE id = ${id_order}

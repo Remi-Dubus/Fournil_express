@@ -11,8 +11,8 @@ export async function deleteProduct(ids: deleteType) {
 		const { id, id_company } = ids;
 		if (id && id_company) {
 			const result = await sql`
-		    	DELETE FROM product WHERE id = ${id} AND id_bakery = ${id_company}
-		    	`;
+				UPDATE product SET deleted_at = ${new Date()} WHERE id = ${id} AND id_bakery = ${id_company}
+			`;
 
 			return {
 				success: true,

@@ -9,9 +9,12 @@ import type { orderRestaurantType } from "@/types/definitions";
 const sql = postgres(process.env.POSTGRES_URL as string, { ssl: "require" });
 
 export async function createOrder(order: orderRestaurantType[]) {
+	// Filtered orders to exclude products with zero quantity
+	const newOrder = order.filter((e) => e.quantity !== 0);
+
 	// Validate field with zod
 	let validateField = null;
-	for (const el of order) {
+	for (const el of newOrder) {
 		validateField = CreateOrderValidation.safeParse({
 			label: el.label,
 			price: el.price,
