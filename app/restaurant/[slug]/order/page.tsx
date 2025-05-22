@@ -24,7 +24,7 @@ export default function Page() {
 			if (response) {
 				setAllProducts(response);
 			}
-		} catch (error) {
+		} catch {
 			toast.error("Impossible de charger les produits");
 		}
 	};

@@ -35,7 +35,7 @@ export default function RegisterForm() {
 			}
 			toast.success(response.message);
 			reset();
-		} catch (err) {
+		} catch {
 			toast.error("Une erreur est survenue.");
 		}
 	};

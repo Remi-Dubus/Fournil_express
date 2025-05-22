@@ -26,12 +26,7 @@ export default function ListOfProduct({
 	const [reviewOrderModale, setReviewOrderModale] = useState(false);
 
 	// Usefrom
-	const {
-		register,
-		handleSubmit,
-		reset,
-		formState: { errors },
-	} = useForm();
+	const { register, handleSubmit, reset } = useForm();
 
 	// Review the order
 	const [reviewOrder, setReviewOrder] = useState<orderRestaurantType[] | null>(
@@ -86,8 +81,7 @@ export default function ListOfProduct({
 				reset();
 				router.push(`/${role}/${slug}/previous-orders`);
 			}
-		} catch (error) {
-			console.error(error);
+		} catch {
 			toast.error("Une erreur est survenue. Veuillez réessayer.");
 		}
 	};
@@ -136,9 +130,6 @@ export default function ListOfProduct({
 								},
 							})}
 						/>
-						<p className="text-red-800 col-span-7 text-end">
-							{errors.products?.[i]?.quantity?.message}
-						</p>
 					</li>
 				))}
 				<ReviewOrderModale

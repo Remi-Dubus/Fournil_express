@@ -29,7 +29,7 @@ export default function BakeryList({
 				} else {
 					toast.error(response?.message);
 				}
-			} catch (error) {
+			} catch {
 				toast.error("Impossible de charger les boulangeries.");
 			}
 		}
