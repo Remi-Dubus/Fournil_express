@@ -1,0 +1,14 @@
+{
+	"productList": "Liste des produits",
+	"addProduct": "Ajouter un produit",
+	"OrderProduct": "Resumé de la commande",
+	"noProduct": "Aucun produit.",
+	"label": "Produit",
+	"price": "Prix",
+	"quantity": "Quantité",
+	"addButton": "Ajouter",
+	"deleteButton": "Supprimer",
+	"returnButton": "Retour",
+	"confirmButton": "Confirmer",
+	"orderButton": "Commander"
+}
