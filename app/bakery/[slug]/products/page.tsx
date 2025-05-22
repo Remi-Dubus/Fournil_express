@@ -58,7 +58,7 @@ export default function Page() {
 			} else {
 				toast.error(response?.message);
 			}
-		} catch (error) {
+		} catch {
 			toast.error("Une erreur est survenue. Veuillez réessayer.");
 		}
 	};

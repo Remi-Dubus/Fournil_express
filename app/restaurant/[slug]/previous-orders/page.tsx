@@ -11,7 +11,7 @@ import OrdersList from "@/features/restaurant/previousOrders/OrderList";
 
 import data from "../../../../src/assets/data/order.json";
 
-import type { formatedOrdersType, ordersListType } from "@/types/definitions";
+import type { formatedOrdersType } from "@/types/definitions";
 
 export default function Page() {
 	// Find the current restaurant

@@ -40,7 +40,7 @@ export default function ReviewOrderModale({
 					{data.OrderProduct}
 				</h2>
 				<ul>
-					{reviewOrder?.map((e, i) => (
+					{reviewOrder?.map((e) => (
 						<li
 							key={e.id}
 							className="text-sm grid grid-cols-10 gap-3 sm:text-lg"

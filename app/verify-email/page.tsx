@@ -28,7 +28,7 @@ export default function verifyEmail() {
 				<p className="mt-2">
 					Retour à
 					<Link href="/" className="ml-1.5 text-interest active:text-gray-600">
-						l'accueil
+						l&apos;accueil
 					</Link>
 					.
 				</p>
