@@ -12,29 +12,35 @@ export default function Presentation() {
 			>
 				{data.welcome}
 			</h2>
-			<p className="text-dark text-center lg:text-lg">{data.firstParagraph}</p>
+			<p className="text-dark text-center lg:text-xl lg:my-4">
+				{data.firstParagraph}
+			</p>
 			<Image
 				src="/pain-au-chocolat.png"
 				width={80}
 				height={70}
 				alt={data.painAuChocolatAlt}
-				className="hidden my-2 ml-0.5 w-auto h-auto md:block"
+				className="hidden my-2 ml-0.5 w-auto h-auto lg:block"
 			/>
-			<p className="text-dark text-center lg:text-lg">{data.secondParagraph}</p>
+			<p className="text-dark text-center lg:text-xl lg:my-4">
+				{data.secondParagraph}
+			</p>
 			<Image
 				src="/croissant.png"
 				width={80}
 				height={70}
 				alt={data.croissantAlt}
-				className="hidden my-2 ml-0.5 w-auto h-auto md:block"
+				className="hidden my-2 ml-0.5 w-auto h-auto lg:block"
 			/>
-			<p className="text-dark text-center lg:text-lg">{data.thirdParagraph}</p>
+			<p className="text-dark text-center lg:text-xl lg:my-4">
+				{data.thirdParagraph}
+			</p>
 			<Image
 				src="/pain.png"
 				width={80}
 				height={70}
 				alt={data.painAlt}
-				className="hidden my-2 ml-0.5 w-auto h-auto md:block lg:mb-16"
+				className="hidden my-2 ml-0.5 w-auto h-auto lg:block lg:mb-16"
 			/>
 			<Link
 				href="#connect"

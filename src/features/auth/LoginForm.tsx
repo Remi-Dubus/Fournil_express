@@ -58,7 +58,7 @@ export default function LoginForm() {
 		>
 			<section className="p-4 space-y-4 sm:space-y-12 lg:space-y-0 sm:p-8">
 				<h2
-					className={`${titleFont.className} text-2xl text-center text-interest lg:text-3xl`}
+					className={`${titleFont.className} text-2xl text-center text-interest lg:text-4xl`}
 				>
 					{data.titleConnection}
 				</h2>
