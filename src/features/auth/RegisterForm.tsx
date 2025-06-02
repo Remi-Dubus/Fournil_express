@@ -52,7 +52,7 @@ export default function RegisterForm() {
 					{data.titleRegister}
 				</h2>
 				<form
-					className="space-y-4 flex flex-col items-center md:space-y-6 lg:space-y-0 sm:grid sm:grid-cols-4 sm:gap-4 lg:flex"
+					className="space-y-4 flex flex-col items-center md:space-y-6 lg:space-y-0 lg:flex sm:grid sm:grid-cols-4 sm:gap-4"
 					onSubmit={handleSubmit(handleRegister)}
 				>
 					<fieldset className="w-full sm:col-span-2">
@@ -226,7 +226,7 @@ export default function RegisterForm() {
 					</fieldset>
 					<button
 						type="submit"
-						className="w-48 mt-5 h-12 shadow-dark shadow-sm text-light bg-dark hover:bg-primary-700 focus:ring-4 rounded-lg px-5 py-1 text-center hover:scale-105 active:text-dark active:bg-interest sm:col-start-2 sm:col-end-4 sm:w-full sm:mt-6"
+						className="w-48 mt-5 h-10 shadow-dark shadow-sm text-light bg-dark hover:bg-primary-700 focus:ring-4 rounded-full px-5 py-1 text-center hover:scale-105 active:text-dark active:bg-interest sm:col-start-2 sm:col-end-4 sm:w-full sm:mt-6 lg:w-1/2"
 					>
 						{data.createAccount}
 					</button>
