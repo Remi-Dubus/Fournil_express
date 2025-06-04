@@ -64,7 +64,7 @@ export default function ReviewOrderModale({
 					type="submit"
 					className={` w-1/2 mt-8 py-1 rounded-full px-2 inset shadow-dark shadow-sm ${loading ? "bg-gray-500 text-light cursor-not-allowed" : "bg-green-500 text-dark active:text-light active:bg-green-800" }`}
 				>
-					{loading ?  data.awaitResponseOrder : data.orderButton}
+					{loading ? data.awaitResponseOrder : data.orderButton}
 				</button>
 				<button
 					type="button"
