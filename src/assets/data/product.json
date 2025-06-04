@@ -10,5 +10,6 @@
 	"deleteButton": "Supprimer",
 	"returnButton": "Retour",
 	"confirmButton": "Confirmer",
-	"orderButton": "Commander"
+	"orderButton": "Commander",
+	"awaitResponseOrder": "Commande en cours..."
 }
