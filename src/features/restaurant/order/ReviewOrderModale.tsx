@@ -8,10 +8,12 @@ export default function ReviewOrderModale({
 	openModale,
 	setOpenModale,
 	reviewOrder,
+	loading
 }: {
 	setOpenModale: (bool: boolean) => void;
 	openModale: boolean;
 	reviewOrder: orderRestaurantType[] | null;
+	loading: boolean
 }) {
 	// Total price of order
 	let totalPriceOfOrder = 0;
@@ -60,9 +62,9 @@ export default function ReviewOrderModale({
 				</ul>
 				<button
 					type="submit"
-					className="bg-green-500 w-1/2 mt-8 py-1 rounded-full px-2 text-dark active:text-light active:bg-green-800 inset shadow-dark shadow-sm"
+					className={` w-1/2 mt-8 py-1 rounded-full px-2 inset shadow-dark shadow-sm ${loading ? "bg-gray-500 text-light cursor-not-allowed" : "bg-green-500 text-dark active:text-light active:bg-green-800" }`}
 				>
-					{data.orderButton}
+					{loading ?  data.awaitResponseOrder : data.orderButton}
 				</button>
 				<button
 					type="button"
