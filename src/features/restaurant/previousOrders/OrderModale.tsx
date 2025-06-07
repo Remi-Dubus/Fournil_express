@@ -36,7 +36,7 @@ export default function OrderModale({
 			if (el.quantity)
 				totalPriceOfOrder = totalPriceOfOrder + el?.quantity * el.price;
 		};
-	}
+	};
 
 	// Button for delete an order
 	const handleDeleteOrder = async (id_order: string) => {
@@ -74,10 +74,10 @@ export default function OrderModale({
 				toast.success(deleteResponse.message);
 				setOpenModale(false);
 				setConfirmDeleteModale(false);
-			}
+			};
 		} catch {
 			toast.error("Une erreur est survenue. Veuillez réessayer.");
-		}
+		};
 	};
 
 	return (

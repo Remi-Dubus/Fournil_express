@@ -46,7 +46,7 @@ export default function OrderModale({
 		if (selectedOrder?.validate === 3) {
 			toast.error("La commande à déjà été annulé par le restaurant.");
 			return;
-		}
+		};
 
 		// Switch between validate and refuse
 		let currentState = selectedOrder?.validate;
@@ -99,7 +99,7 @@ export default function OrderModale({
 		};
 
 		// Switch between validate and refuse
-		let currentState = 2;
+		const currentState = 2;
 
 		const newState = { id_order, currentState };
 
