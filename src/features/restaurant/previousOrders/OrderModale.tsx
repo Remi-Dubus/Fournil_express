@@ -16,14 +16,12 @@ export default function OrderModale({
 	openModale,
 	setOpenModale,
 	selectedOrder,
-	setSelectedOrder,
 	setOrders,
 	selectedBakery,
 }: {
 	setOpenModale: (bool: boolean) => void;
 	openModale: boolean;
 	selectedOrder: ordersType | null;
-	setSelectedOrder: (order: ordersType | null) => void;
 	setOrders: React.Dispatch<React.SetStateAction<formatedOrdersType[]>>;
 	selectedBakery: string[] | null;
 }) {
@@ -37,71 +35,33 @@ export default function OrderModale({
 		for (const el of selectedOrder.products) {
 			if (el.quantity)
 				totalPriceOfOrder = totalPriceOfOrder + el?.quantity * el.price;
-		}
+		};
 	}
-
-	// Button for switch between pending and cancel
-	const handleSwitchValidate = async (id_order: string) => {
-		// If status is cancel return a toast
-		if (selectedOrder?.validate === 2) {
-			toast.error("La commande à déjà été refusé par la boulangerie.");
-			return;
-		}
-
-		// Switch between pending and cancel
-		let currentState = selectedOrder?.validate;
-		if (currentState === 0) {
-			currentState = 3;
-		} else {
-			currentState = 0;
-		}
-
-		const newState = { id_order, currentState };
-
-		try {
-			const response = await switchValidateOrderStatus(newState);
-
-			if (!response) {
-				toast.error("Une erreur est survenue. Veuillez réesayer.");
-			} else {
-				// Update state of the modale
-				if (selectedOrder?.booking_id) {
-					const updatedOrder: ordersType = {
-						...selectedOrder,
-						validate: currentState,
-					};
-					setSelectedOrder(updatedOrder);
-				}
-				// Update state of order list
-				setOrders((prevState) =>
-					prevState.map((client) => ({
-						...client,
-						orders: client.orders.map((order) =>
-							order.booking_id === id_order
-								? { ...order, validate: currentState }
-								: order,
-						),
-					})),
-				);
-			}
-		} catch {
-			toast.error("Une erreur est survenue. Veuillez réessayer.");
-		}
-	};
 
 	// Button for delete an order
 	const handleDeleteOrder = async (id_order: string) => {
+		// Create an object with id order and delete status for restaurant and bakery
 		const orderToDelete = {
 			id_order,
 			hiddenRestaurant: true,
 			hiddenBakery: !!selectedOrder?.hidden_bakery,
 		};
 
-		try {
-			const response = await destroyOrder(orderToDelete);
+		// Switch pendin to cancel
+		let currentState = selectedOrder?.validate;
+		
+		if(currentState !== 2) {
+			currentState = 3;
+		};
 
-			if (!response.success) {
-				toast.error(response.message);
+		const newState = { id_order, currentState };
+
+		try {
+			const switchResponse = await switchValidateOrderStatus(newState);
+			const deleteResponse = await destroyOrder(orderToDelete);
+
+			if (!switchResponse || !deleteResponse.success) {
+				toast.error(deleteResponse.message);
 			} else {
 				setOrders((prevState) =>
 					prevState
@@ -111,7 +71,7 @@ export default function OrderModale({
 						}))
 						.filter((e) => e.orders.length > 0),
 				);
-				toast.success(response.message);
+				toast.success(deleteResponse.message);
 				setOpenModale(false);
 				setConfirmDeleteModale(false);
 			}
@@ -160,14 +120,9 @@ export default function OrderModale({
 				>
 					{orderData.orderState}
 				</h2>
-				<button
-					type="button"
-					className={`h-8 border-2 ${titleFont.className} text-light mb-3 rounded-lg inset shadow-dark shadow-sm xl:text-xl ${selectedOrder?.validate === 0 ? "bg-dark outline-dark active:bg-interest" : selectedOrder?.validate === 1 ? "bg-green-500 outline-green-500 active:text-light active:bg-green-800" : "bg-interest outline-interest active:text-light active:bg-orange-600"}`}
-					onClick={() => {
-						if (selectedOrder?.booking_id) {
-							handleSwitchValidate(selectedOrder?.booking_id);
-						}
-					}}
+				<p
+					className={`h-8 mt-1 mb-3 xl:text-xl ${selectedOrder?.validate === 0 ? "text-dark" : selectedOrder?.validate === 1 ? "text-green-500" : "text-interest"}`}
+					
 				>
 					{selectedOrder?.validate === 0
 						? orderData.pending
@@ -176,7 +131,7 @@ export default function OrderModale({
 							: selectedOrder?.validate === 2
 								? orderData.refuse
 								: orderData.cancel}
-				</button>
+				</p>
 				<button
 					type="button"
 					className={`h-8 border-2 ${titleFont.className} text-light mb-3 rounded-lg inset shadow-dark shadow-sm xl:text-xl bg-red-700 outline-red-700`}

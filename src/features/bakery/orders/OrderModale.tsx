@@ -37,8 +37,8 @@ export default function OrderModale({
 		for (const el of selectedOrder.products) {
 			if (el.quantity)
 				totalPriceOfOrder = totalPriceOfOrder + el?.quantity * el.price;
-		}
-	}
+		};
+	};
 
 	// Button for switch between validate and refuse
 	const handleSwitchValidate = async (id_order: string) => {
@@ -54,7 +54,7 @@ export default function OrderModale({
 			currentState = 1;
 		} else {
 			currentState = 2;
-		}
+		};
 
 		const newState = { id_order, currentState };
 
@@ -71,7 +71,7 @@ export default function OrderModale({
 						validate: currentState,
 					};
 					setSelectedOrder(updatedOrder);
-				}
+				};
 				// Update state of order list
 				setAllOrders((prevState) =>
 					prevState.map((client) => ({
@@ -83,25 +83,32 @@ export default function OrderModale({
 						),
 					})),
 				);
-			}
+			};
 		} catch {
 			toast.error("Une erreur est survenue. Veuillez réessayer.");
-		}
+		};
 	};
 
 	// Button for delete an order
 	const handleDeleteOrder = async (id_order: string) => {
+		// Create an object with id order and delete status for restaurant and bakery
 		const orderToDelete = {
 			id_order,
 			hiddenRestaurant: !!selectedOrder?.hidden_restaurant,
 			hiddenBakery: true,
 		};
 
-		try {
-			const response = await destroyOrder(orderToDelete);
+		// Switch between validate and refuse
+		let currentState = 2;
 
-			if (!response.success) {
-				toast.error(response.message);
+		const newState = { id_order, currentState };
+
+		try {
+			const switchResponse = await switchValidateOrderStatus(newState);
+			const deleteResponse = await destroyOrder(orderToDelete);
+
+			if (!switchResponse || !deleteResponse.success) {
+				toast.error(deleteResponse.message);
 			} else {
 				setAllOrders((prevState) =>
 					prevState
@@ -111,13 +118,13 @@ export default function OrderModale({
 						}))
 						.filter((e) => e.orders.length > 0),
 				);
-				toast.success(response.message);
+				toast.success(deleteResponse.message);
 				setOpenModale(false);
 				setConfirmDeleteModale(false);
-			}
+			};
 		} catch {
 			toast.error("Une erreur est survenue. Veuillez réessayer.");
-		}
+		};
 	};
 
 	return (
