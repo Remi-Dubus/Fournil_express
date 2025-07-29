@@ -65,10 +65,13 @@ export default function ListOfProduct({
 	}, []);
 
 	// Confirm the order
+	const [loading, setLoading] = useState(false);
 	const router = useRouter();
 
 	const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+		setLoading(true);
+
 		try {
 			if (reviewOrder) {
 				const response = await addOrder(reviewOrder);
@@ -79,8 +82,11 @@ export default function ListOfProduct({
 				}
 				setReviewOrderModale(false);
 				reset();
-				router.push(`/${role}/${slug}/previous-orders`);
-			}
+				setTimeout(() => {
+					router.push(`/${role}/${slug}/previous-orders`);
+					setLoading(false);
+				}, 1500);
+			};
 		} catch {
 			toast.error("Une erreur est survenue. Veuillez réessayer.");
 		}
@@ -136,6 +142,7 @@ export default function ListOfProduct({
 					openModale={reviewOrderModale}
 					setOpenModale={setReviewOrderModale}
 					reviewOrder={reviewOrder}
+					loading={loading}
 				/>
 				<button
 					type="button"

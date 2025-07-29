@@ -85,7 +85,6 @@ export default function OrdersList({
 				openModale={openSelectedOrderModale}
 				setOpenModale={setOpenSelectedOrderModale}
 				selectedOrder={selectedOrder}
-				setSelectedOrder={setSelectedOrder}
 				setOrders={setOrders}
 				selectedBakery={selectedBakery}
 			/>

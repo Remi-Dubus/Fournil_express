@@ -54,7 +54,7 @@ export default function LoginForm() {
 	return (
 		<article
 			id="connect"
-			className="mb-96 w-full bg-light rounded-lg sm:col-start-2 shadow-dark shadow-sm sm:mb-0 xl:mt-10 xl:w-10/12"
+			className="mb-96 w-full bg-light rounded-lg sm:col-start-2 shadow-dark shadow-sm sm:mb-0 sm:mt-10 xl:w-10/12"
 		>
 			<section className="p-4 space-y-4 sm:space-y-12 lg:space-y-0 sm:p-8">
 				<h2
@@ -96,7 +96,7 @@ export default function LoginForm() {
 					</fieldset>
 					<button
 						type="submit"
-						className="w-48 h-12 shadow-dark shadow-sm text-light bg-dark hover:bg-primary-700 focus:ring-4 rounded-lg px-5 py-1 text-center hover:scale-105 active:text-dark active:bg-interest"
+						className="w-48 h-10 shadow-dark shadow-sm text-light bg-dark hover:bg-primary-700 focus:ring-4 rounded-full px-5 py-1 text-center hover:scale-105 active:text-dark active:bg-interest"
 						disabled={loading}
 					>
 						{loading ? "Connexion..." : data.titleConnection}
