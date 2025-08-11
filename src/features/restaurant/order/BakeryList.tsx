@@ -15,7 +15,7 @@ export default function BakeryList({
 	handleSelectBakery,
 }: { handleSelectBakery: (id: string) => Promise<void> }) {
 	// Useform
-	const { register, handleSubmit } = useForm();
+	const { register, handleSubmit, formState: { errors } } = useForm();
 
 	// Browse all bakery
 	const [allBakery, setAllBakery] = useState<companyType[]>([]);
@@ -57,7 +57,7 @@ export default function BakeryList({
 					{...register("id", {
 						required: errorData.required,
 						validate: (value) => {
-							if (value.length < 10) {
+							if (value === "0") {
 								return errorData.required;
 							}
 						},
@@ -69,7 +69,11 @@ export default function BakeryList({
 							{e.label}
 						</option>
 					))}
+					
 				</select>
+				{typeof errors.id?.message === 'string' && (
+					<p className="text-red-800">{errors.id?.message}</p>
+				)}
 				<button
 					type="submit"
 					className="col-start-2 bg-green-500 mt-2 py-1 rounded-full px-2 text-dark active:text-light active:bg-green-800 inset shadow-dark shadow-sm xl:mt-8"

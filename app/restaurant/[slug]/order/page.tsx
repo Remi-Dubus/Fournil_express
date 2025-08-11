@@ -23,7 +23,7 @@ export default function Page() {
 			const response = await browseProducts(id);
 			if (response) {
 				setAllProducts(response);
-			}
+			} 
 		} catch {
 			toast.error("Impossible de charger les produits");
 		}
