@@ -144,13 +144,16 @@ export default function ListOfProduct({
 					reviewOrder={reviewOrder}
 					loading={loading}
 				/>
-				<button
+				{allProducts.length !== 0 ? (
+					<button
 					type="button"
 					className="col-start-2 bg-green-500 mt-8 py-1 rounded-full px-2 text-dark active:text-light active:bg-green-800 inset shadow-dark shadow-sm"
 					onClick={handleSubmit(handleReviewOrder)}
-				>
-					{data.orderButton}
-				</button>
+					>
+						{data.orderButton}
+					</button>
+				): ""}
+				
 			</ul>
 		</form>
 	);
